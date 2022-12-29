@@ -40,7 +40,6 @@ private:
 
     // Private util functions
     void makeStackedWidget();
-    //void makeConnects();
 
     // StackedWidget maker
     template <typename T, typename... Types>

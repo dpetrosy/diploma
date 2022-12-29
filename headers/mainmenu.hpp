@@ -14,7 +14,7 @@ class MainMenu : public QWidget
     Q_OBJECT
 
 public:
-    explicit MainMenu(MainWindow* mainWindow = nullptr, QWidget* parent = nullptr);
+    explicit MainMenu(MainWindow* mainWindow, QWidget* parent = nullptr);
     virtual ~MainMenu();
 
 private:

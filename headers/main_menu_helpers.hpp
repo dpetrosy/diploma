@@ -12,7 +12,7 @@ enum class MainMenuProps
     HorLayoutX = VerLayoutX,
     HorLayoutW = VerLayoutW,
     HorLayoutH = VerLayoutH / 3,
-    VerLayoutY = ((int)MainWindowProps::windowSizeH - 260) / 2 - 13,
+    VerLayoutY = ((int)MainWindowProps::windowSizeH - 260) / 2 - 25,
     HorLayoutY = VerLayoutY + VerLayoutH - 8,
     QuitButtonX = VerLayoutX + 10,
     QuitButtonY = HorLayoutY + HorLayoutH + 3,

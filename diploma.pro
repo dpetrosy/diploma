@@ -11,20 +11,25 @@ CONFIG += c++17
 
 
 SOURCES += \
-    main.cpp \
-    mainmenu.cpp \
-    mainwindow.cpp \
-    namespaces.cpp \
-    utils.cpp
+    sources/main.cpp \
+    sources/mainmenu.cpp \
+    sources/mainwindow.cpp \
+    sources/namespaces.cpp \
+    sources/utils.cpp \
 
 
 HEADERS += \
-    helpers.hpp \
-    main_menu_helpers.hpp \
-    mainmenu.hpp \
-    mainwindow.hpp \
-    predefined_classes.hpp \
-    utils.hpp
+    headers/helpers.hpp \
+    headers/mainmenu.hpp \
+    headers/mainwindow.hpp \
+    headers/main_menu_helpers.hpp \
+    headers/predefined_classes.hpp \
+    headers/utils.hpp \
+
+
+
+INCLUDEPATH += \
+    headers/ \
 
 
 # Default rules for deployment.

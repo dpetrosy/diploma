@@ -1,4 +1,5 @@
 #include "mainmenu.hpp"
+#include "mainwindow.hpp"
 #include "main_menu_helpers.hpp"
 #include "utils.hpp"
 
@@ -38,12 +39,12 @@ void MainMenu::init()
     _horLayout = new QHBoxLayout(_widgetForHorLayout);
 
     // Push Buttons
-    _Tree1Button = new QPushButton("Tree1");
-    _Tree2Button = new QPushButton("Tree2");
-    _Tree3Button = new QPushButton("Tree3");
-    _BFSButton = new QPushButton("BFS");
-    _DFSButton = new QPushButton("DFS");
-    _QuitButton = new QPushButton("Quit", this);
+    _Tree1Button = new QPushButton();
+    _Tree2Button = new QPushButton();
+    _Tree3Button = new QPushButton();
+    _BFSButton = new QPushButton();
+    _DFSButton = new QPushButton();
+    _QuitButton = new QPushButton(this);
 }
 
 // Public util functions
@@ -132,4 +133,12 @@ void MainMenu::makeMainMenu(MainWindow* mainWindow)
     rect.setRect((int)MainMenuProps::HorLayoutX, (int)MainMenuProps::HorLayoutY, (int)MainMenuProps::HorLayoutW, (int)MainMenuProps::HorLayoutH);
     _widgetForHorLayout->setGeometry(rect);
     _QuitButton->setGeometry((int)MainMenuProps::QuitButtonX, (int)MainMenuProps::QuitButtonY, (int)MainMenuProps::QuitButtonW, (int)MainMenuProps::QuitButtonH);
+
+    // Make connects
+    connect(_Tree1Button, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::Tree1));
+    connect(_Tree2Button, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::Tree2));
+    connect(_Tree3Button, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::Tree3));
+    connect(_BFSButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::BFS));
+    connect(_DFSButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::DFS));
+    connect(_QuitButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::showQuitWindow, mainWindow));
 }
