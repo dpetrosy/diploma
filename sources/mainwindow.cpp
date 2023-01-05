@@ -1,5 +1,4 @@
 #include "mainwindow.hpp"
-#include "headers/predefined_classes.hpp"
 #include "mainmenu.hpp"
 #include "helpers.hpp"
 
@@ -12,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Init class members
     init();
 
-    //setBackgroundImage(BackgroundImages::StrongKnight);
+    setBackgroundImage(ImagesPaths::BKGImage);
 
     // Make StackedWidget
     makeStackedWidget();
@@ -48,13 +47,6 @@ void MainWindow::init()
 // Public slots
 void MainWindow::switchMenu(Menus toMenu)
 {
-//    if (toMenu == Menus::PVPMenu)
-//        _PVPMenuWidget->makeMenuBeforeSwitch();
-//    else if (toMenu == Menus::SettingsMenu)
-//        _SettingsMenuWidget->makeMenuBeforeSwitch();
-//    else if (toMenu == Menus::MainMenu)
-//        _MainMenuWidget->makeMenuBeforeSwitch(_SettingsMenuWidget, this);
-
     _MenusStackedWidget->setCurrentIndex((int)toMenu);
 }
 
@@ -72,12 +64,13 @@ void MainWindow::exitFromProgram(int signal)
 // Public util functions
 void MainWindow::setBackgroundImage(const QString& image)
 {
-//    _backgroundImage.load(ImagesPaths::backgroundsPath + image + BackgroundImages::Extencion);
-//    _backgroundImage = _backgroundImage.scaled(this->size(), Qt::IgnoreAspectRatio);
-//    _palette.setBrush(QPalette::Window, _backgroundImage);
-//    this->setPalette(_palette);
+    _backgroundImage.load(ImagesPaths::BackgroundsPath + image + ".jpg");
+    _backgroundImage = _backgroundImage.scaled(this->size(), Qt::IgnoreAspectRatio);
+    _palette.setBrush(QPalette::Window, _backgroundImage);
+    this->setPalette(_palette);
 }
 
+// Getters
 QStackedWidget* MainWindow::getStackedWidget()
 {
     return _MenusStackedWidget;

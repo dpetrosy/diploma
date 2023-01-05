@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>images/logo.png</file>
         <file>styles/main_menu_button.txt</file>
+        <file>images/backgrounds/bkg.jpg</file>
+        <file>images/backgrounds/bkg1.jpg</file>
     </qresource>
 </RCC>

@@ -25,4 +25,11 @@ namespace StylesPaths
     extern QString MainMenuButtonStyle;
 }
 
+namespace ImagesPaths
+{
+    extern QString ImagesPath;
+    extern QString BackgroundsPath;
+    extern QString BKGImage;
+}
+
 #endif // HELPERS_HPP
