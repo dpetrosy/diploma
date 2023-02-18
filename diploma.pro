@@ -27,7 +27,6 @@ HEADERS += \
     headers/utils.hpp \
 
 
-
 INCLUDEPATH += \
     headers/ \
 

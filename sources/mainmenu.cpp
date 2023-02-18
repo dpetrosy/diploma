@@ -50,39 +50,6 @@ void MainMenu::init()
 // Public util functions
 //void MainMenu::makeMenuBeforeSwitch(SettingsMenu* settingMenuWidget, MainWindow* mainWindow)
 //{
-//    // set bkg image
-//    mainWindow->setBackgroundImage(settingMenuWidget->getData().bkgImageStr);
-
-//    if (gLanguage == Languages::Armenian)
-//    {
-//        _PVPButton->setText("Խաղալ ընկերոջ հետ");
-//        _PVCButton->setText("Խաղալ համակարգչի հետ");
-//        _InstrButton->setText("Կանոններ");
-//        _SettingsButton->setText("Կարգավորումներ");
-//        _QuitButton->setText("Լքել");
-//        _versionTextLabel->setText("Տարբերակ: 1.2.4");
-//        _versionTextLabel->move((int)MainMenuProps::VersionTextLabelX - 20, (int)MainMenuProps::VersionTextLabelY);
-//    }
-//    else if (gLanguage == Languages::Russian)
-//    {
-//        _PVPButton->setText("Сыграть с Другом");
-//        _PVCButton->setText("Сыграть с Компьютером");
-//        _InstrButton->setText("Правила");
-//        _SettingsButton->setText("Настройки");
-//        _QuitButton->setText("Выйти");
-//        _versionTextLabel->setText("Версия: 1.2.4");
-//        _versionTextLabel->move((int)MainMenuProps::VersionTextLabelX, (int)MainMenuProps::VersionTextLabelY);
-//    }
-//    else // English US
-//    {
-//        _PVPButton->setText("Player vs Player");
-//        _PVCButton->setText("Player vs Computer");
-//        _InstrButton->setText("Instructions");
-//        _SettingsButton->setText("Settings");
-//        _QuitButton->setText("Quit");
-//        _versionTextLabel->setText("Version: 1.2.4");
-//        _versionTextLabel->move((int)MainMenuProps::VersionTextLabelX, (int)MainMenuProps::VersionTextLabelY);
-//    }
 //}
 
 // Private util functions
