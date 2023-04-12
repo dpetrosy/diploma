@@ -1,0 +1,12 @@
+
+ 
+  1. Depth-First Search (DFS)
+  2. Iterative Deepening DFS
+  3. Bidirectional Search (BDS)
+  4. Uniform-Cost Search (UCS)
+  5. Dijkstra's Algorithm
+  6. Best-First Search (BFS)
+  7. A* Search Algorithm
+  8. Greedy Best-First Search
+  9. Hill Climbing Algorithm
+  10. Beam Search Algorithm

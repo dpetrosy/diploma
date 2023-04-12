@@ -1,0 +1,7 @@
+QLabel
+{
+    font: 700 12pt "Sans Serif";
+    color: rgb(255, 255, 255);
+    background-color: #87beeb;
+    border-radius: 4px;
+}

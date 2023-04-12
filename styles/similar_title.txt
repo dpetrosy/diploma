@@ -1,0 +1,5 @@
+QLabel
+{
+    font: 700 14pt "Sans Serif";
+    color: rgb(255, 255, 255);
+}

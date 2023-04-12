@@ -3,5 +3,6 @@
 
 class MainWindow;
 class MainMenu;
+class AlgoMenu;
 
 #endif // PREDEFINED_CLASSES_HPP

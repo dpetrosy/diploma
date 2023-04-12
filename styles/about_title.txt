@@ -1,0 +1,5 @@
+QLabel
+{
+    font: 700 "Alinea Sans";
+    color: rgb(88, 88, 88);
+}

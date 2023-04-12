@@ -2,7 +2,28 @@
     <qresource prefix="/">
         <file>images/logo.png</file>
         <file>styles/main_menu_button.txt</file>
-        <file>images/backgrounds/bkg.jpg</file>
-        <file>images/backgrounds/bkg1.jpg</file>
+        <file>images/backgrounds/background.jpg</file>
+        <file>images/backgrounds/white.jpg</file>
+        <file>styles/one_line_text.txt</file>
+        <file>styles/combobox.txt</file>
+        <file>images/combobox_arrow.png</file>
+        <file>styles/bold_dim_text.txt</file>
+        <file>styles/dim_text.txt</file>
+        <file>styles/slider.txt</file>
+        <file>styles/pseudocode.txt</file>
+        <file>texts/about_bfs.txt</file>
+        <file>texts/about_dfs.txt</file>
+        <file>texts/algo_list.txt</file>
+        <file>texts/bfs_pseudocode.txt</file>
+        <file>texts/dfs_pseudocode.txt</file>
+        <file>styles/about_text.txt</file>
+        <file>styles/about_title.txt</file>
+        <file>styles/similar_text.txt</file>
+        <file>styles/similar_title.txt</file>
+        <file>texts/similar_algos_text.txt</file>
+        <file>styles/menu.txt</file>
+        <file>texts/comp_bfs.txt</file>
+        <file>texts/comp_dfs.txt</file>
+        <file>styles/comp_text.txt</file>
     </qresource>
 </RCC>

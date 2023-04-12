@@ -20,7 +20,7 @@ void setLabelTextFont(QLabel* label, int font)
     label->setFont(buttonFont);
 }
 
-void setStyleSheet(QString path, QWidget* obj)
+void setStyleSheet(QString& path, QWidget* obj)
 {
     QFile file;
     file.setFileName(path);
@@ -30,10 +30,30 @@ void setStyleSheet(QString path, QWidget* obj)
     file.close();
 }
 
-QString removeUnderscoreInString(QString str)
+QString removeUnderscoreInString(QString& str)
 {
     for (auto it = str.begin(); it != str.end(); ++it)
         if (*it == '_')
             *it = ' ';
+    return str;
+}
+
+QString  getTextFromFile(QString& path)
+{
+    QFile file;
+    file.setFileName(path);
+    file.open(QFile::ReadOnly);
+    QString retString = QLatin1String(file.readAll());
+    file.close();
+    return retString;
+}
+
+QString  deleteNewlineAtEnd(QString str)
+{
+    int len = str.length();
+    if (str[len - 1] == '\n')
+    {
+        str.remove(len - 1, 1);
+    }
     return str;
 }

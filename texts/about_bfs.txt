@@ -1,0 +1,15 @@
+
+
+    BFS is a graph traversal algorithm that
+ works by systematically exploring all the
+ nodes in a graph. At each step, it removes
+ the next node in the queue and adds its
+ unvisited neighbors to the queue. This
+ process continues until all reachable nodes
+ have been visited. The time complexity of
+ BFS is O(V+E), where V is the number of
+ vertices and E is the number of edges in
+ the graph. However, in the worst-case
+ scenario, such as when the graph is a
+ complete graph, BFS takes O(V^2) time to
+ explore all the nodes.

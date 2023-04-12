@@ -9,7 +9,9 @@
 void     setPushButtonSize(QPushButton *button, int width, int height);
 void     setPushButtonFont(QPushButton *button, int font);
 void     setLabelTextFont(QLabel* label, int font);
-void     setStyleSheet(QString path, QWidget* obj);
-QString  removeUnderscoreInString(QString str);
+void     setStyleSheet(QString& path, QWidget* obj);
+QString  removeUnderscoreInString(QString& str);
+QString  getTextFromFile(QString& path);
+QString  deleteNewlineAtEnd(QString str);
 
 #endif // UTILS_HPP

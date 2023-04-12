@@ -1,6 +1,6 @@
 #include "mainmenu.hpp"
 #include "mainwindow.hpp"
-#include "main_menu_helpers.hpp"
+#include "helpers.hpp"
 #include "utils.hpp"
 
 MainMenu::MainMenu(MainWindow* mainWindow, QWidget* parent) :

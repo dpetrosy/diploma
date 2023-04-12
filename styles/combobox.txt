@@ -1,0 +1,17 @@
+QComboBox
+{
+    border: 1px solid gray;
+    font-size: 10pt;
+    background-color: rgb(240, 240, 240);
+    border-radius: 4px;
+}
+
+QComboBox::drop-down
+{
+    border: 0px;
+}
+
+QComboBox::down-arrow
+{
+    image: url(:/images/combobox_arrow.png);
+}

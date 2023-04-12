@@ -1,6 +1,7 @@
 #include "mainwindow.hpp"
 #include "mainmenu.hpp"
 #include "helpers.hpp"
+#include "algo_menu.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -11,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Init class members
     init();
 
-    setBackgroundImage(ImagesPaths::BKGImage);
+    setBackgroundImage(ImagesPaths::MainMenuBKGImage);
 
     // Make StackedWidget
     makeStackedWidget();
@@ -21,7 +22,12 @@ MainWindow::MainWindow(QWidget *parent)
     switchMenu(Menus::MainMenu);
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow()
+{
+    delete _MainMenuWidget;
+    delete _AlgoMenuWidget;
+    delete _MenusStackedWidget;
+}
 
 // Singlton pattern realization
 MainWindow *MainWindow::_mainWindow = nullptr;
@@ -39,6 +45,7 @@ void MainWindow::init()
 {
     // Menus Widgets
     _MainMenuWidget = new MainMenu(this);
+    _AlgoMenuWidget = new AlgoMenu(this);
 
     // Menus StackedWidget
     _MenusStackedWidget = new QStackedWidget();
@@ -48,6 +55,11 @@ void MainWindow::init()
 void MainWindow::switchMenu(Menus toMenu)
 {
     _MenusStackedWidget->setCurrentIndex((int)toMenu);
+
+    if (toMenu == Menus::MainMenu)
+        setBackgroundImage(ImagesPaths::MainMenuBKGImage);
+    else
+        setBackgroundImage(ImagesPaths::MenusBKGImage);
 }
 
 void MainWindow::showQuitWindow()
@@ -79,5 +91,5 @@ QStackedWidget* MainWindow::getStackedWidget()
 // Private util functions
 void MainWindow::makeStackedWidget()
 {
-    makeStackedWidget(_MenusStackedWidget, _MainMenuWidget);
+    makeStackedWidget(_MenusStackedWidget, _MainMenuWidget, _AlgoMenuWidget);
 }

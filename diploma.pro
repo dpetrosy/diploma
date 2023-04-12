@@ -1,5 +1,6 @@
 QT       += core gui
 QT       += multimedia
+QT       += multimediawidgets
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -12,23 +13,26 @@ CONFIG += c++17
 
 SOURCES += \
     sources/main.cpp \
-    sources/mainmenu.cpp \
     sources/mainwindow.cpp \
+    sources/menus_sources/algo_menu.cpp \
     sources/namespaces.cpp \
     sources/utils.cpp \
+    sources/menus_sources/mainmenu.cpp \
 
 
 HEADERS += \
     headers/helpers.hpp \
     headers/mainmenu.hpp \
     headers/mainwindow.hpp \
-    headers/main_menu_helpers.hpp \
+    headers/menus_headers/algo_menu.hpp \
     headers/predefined_classes.hpp \
     headers/utils.hpp \
+    headers/menus_headers/mainmenu.hpp \
 
 
 INCLUDEPATH += \
     headers/ \
+    headers/menus_headers/ \
 
 
 # Default rules for deployment.
