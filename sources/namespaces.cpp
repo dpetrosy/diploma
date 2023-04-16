@@ -24,6 +24,9 @@ namespace ImagesPaths
     QString BackgroundsPath = ImagesPath + "backgrounds/";
     QString MainMenuBKGImage = "background";
     QString MenusBKGImage = "white";
+    QString PauseButtonImage = ImagesPath + "pause_button.png";
+    QString PlayButtonImage = ImagesPath + "play_button.png";
+    QString StopButtonImage = ImagesPath + "stop_button.png";
 }
 
 namespace TextsPaths
@@ -36,4 +39,10 @@ namespace TextsPaths
     QString SimilarAlgosPath = TextsPath + "similar_algos_text.txt";
     QString CompBFSPath = TextsPath + "comp_bfs.txt";
     QString CompDFSPath = TextsPath + "comp_dfs.txt";
+}
+
+namespace VideosPaths
+{
+    QString VideosPath = "qrc:/videos/";
+    QString BFSVideosPath = VideosPath + "bfs_videos/";
 }

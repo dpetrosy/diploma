@@ -45,7 +45,7 @@ void MainWindow::init()
 {
     // Menus Widgets
     _MainMenuWidget = new MainMenu(this);
-    _AlgoMenuWidget = new AlgoMenu(this);
+    _AlgoMenuWidget = new AlgoMenu(true, this, this);
 
     // Menus StackedWidget
     _MenusStackedWidget = new QStackedWidget();
@@ -54,12 +54,21 @@ void MainWindow::init()
 // Public slots
 void MainWindow::switchMenu(Menus toMenu)
 {
-    _MenusStackedWidget->setCurrentIndex((int)toMenu);
-
     if (toMenu == Menus::MainMenu)
+    {
+        _MenusStackedWidget->setCurrentIndex((int)toMenu);
         setBackgroundImage(ImagesPaths::MainMenuBKGImage);
-    else
+    }
+    else if (toMenu == Menus::BFS || toMenu == Menus::DFS)
+    {
+        _MenusStackedWidget->setCurrentIndex((int)Menus::AlgoMenu);
         setBackgroundImage(ImagesPaths::MenusBKGImage);
+
+        if (toMenu == Menus::BFS)
+            _AlgoMenuWidget->prepareMenuBeforeSwitch(true);
+        else
+            _AlgoMenuWidget->prepareMenuBeforeSwitch(false);
+    }
 }
 
 void MainWindow::showQuitWindow()

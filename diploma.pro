@@ -12,6 +12,7 @@ CONFIG += c++17
 
 
 SOURCES += \
+    sources/clickablelabel.cpp \
     sources/main.cpp \
     sources/mainwindow.cpp \
     sources/menus_sources/algo_menu.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 
 
 HEADERS += \
+    headers/clickablelabel.hpp \
     headers/helpers.hpp \
     headers/mainmenu.hpp \
     headers/mainwindow.hpp \

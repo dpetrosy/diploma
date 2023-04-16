@@ -1,0 +1,10 @@
+
+   DFS(u)
+
+   for each neighbor v of u
+
+     if v is unvisited, tree edge, DFS(v)
+
+     else if v is explored, bidirectional edge
+
+     else if v is visited, forward/cross edge

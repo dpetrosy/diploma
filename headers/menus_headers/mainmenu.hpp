@@ -36,7 +36,6 @@ private:
     // PushButtons
     QPushButton* _Tree1Button;
     QPushButton* _Tree2Button;
-    QPushButton* _Tree3Button;
     QPushButton* _BFSButton;
     QPushButton* _DFSButton;
     QPushButton* _QuitButton;

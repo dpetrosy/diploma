@@ -5,18 +5,18 @@
 
 enum class MainWindowProps
 {
-    windowSizeW = 1150,
+    windowSizeW = 1250,
     windowSizeH = 700,
 };
 
 enum class Menus : int
 {
-    MainMenu,
-    BFS,
-    DFS,
-    Tree1,
-    Tree2,
-    Tree3,
+    MainMenu = 0,
+    BFS = 1,
+    DFS = 2,
+    Tree1 = 3,
+    Tree2 = 4,
+    AlgoMenu = 1,
 };
 
 namespace StylesPaths
@@ -55,17 +55,26 @@ namespace ImagesPaths
     extern QString BackgroundsPath;
     extern QString MainMenuBKGImage;
     extern QString MenusBKGImage;
+    extern QString PauseButtonImage;
+    extern QString PlayButtonImage;
+    extern QString StopButtonImage;
+}
+
+namespace VideosPaths
+{
+    extern QString VideosPath;
+    extern QString BFSVideosPath;
 }
 
 enum class MainMenuProps
 {
     // Layouts Properties
     VerLayoutW = ((int)MainWindowProps::windowSizeW / 10) * 4 - 115,
-    VerLayoutH = (int)MainWindowProps::windowSizeH / 4,
+    VerLayoutH = (int)MainWindowProps::windowSizeH / 5 - 22,
     VerLayoutX = ((int)MainWindowProps::windowSizeW - 326) / 2 - 13,
     HorLayoutX = VerLayoutX,
     HorLayoutW = VerLayoutW,
-    HorLayoutH = VerLayoutH / 3,
+    HorLayoutH = VerLayoutH / 2 - 2,
     VerLayoutY = ((int)MainWindowProps::windowSizeH - 260) / 2 - 25,
     HorLayoutY = VerLayoutY + VerLayoutH - 8,
     QuitButtonX = VerLayoutX + 10,
@@ -86,7 +95,7 @@ enum class AlgoMenuProps
 {
     // Graph settings props
     settingsWidgetW = 240,
-    settingsWidgetH = 284,
+    settingsWidgetH = 255,
     settingsWidgetX = 22,
     settingsWidgetY = (int)MainWindowProps::windowSizeH - settingsWidgetH - 22,
 
@@ -104,32 +113,20 @@ enum class AlgoMenuProps
     SizeWidgetX = VerticesComboBoxX - 9,
     SizeWidgetY = VerticesComboBoxY + 40,
     SizeWidgetW = 200,
-    SizeWidgetH = 95,
+    SizeWidgetH = 67,
 
     DirectWidgetX = SizeWidgetX,
     DirectWidgetY = SizeWidgetY + SizeWidgetH + 7,
     DirectWidgetW = SizeWidgetW,
-    DirectWidgetH = 67,
-
-    // Animation settings props
-    SliderTextX = 500,
-    SliderTextY = (int)MainWindowProps::windowSizeH - 75,
-
-    SliderTextNumberX = SliderTextX + 139,
-    SliderTextNumberY = SliderTextY + 2,
-
-    SliderX = SliderTextX - 55,
-    SliderY = SliderTextY + 28,
-    SliderW = 270,
-    SliderH = 25,
+    DirectWidgetH = SizeWidgetH,
 
     // About text props
-    AboutTextX = settingsWidgetX,
-    AboutTextY = 126,
     AboutTextW = settingsWidgetW,
     AboutTextH = 248,
+    AboutTextX = settingsWidgetX,
+    AboutTextY = (int)MainWindowProps::windowSizeH - settingsWidgetH - AboutTextH - 44,
     AboutTitleTextX = AboutTextX + 83,
-    AboutTitleTextY = AboutTextY + 6,
+    AboutTitleTextY = AboutTextY + 4,
 
     // Similar text props
     SimilarTextW = 288,
@@ -138,6 +135,22 @@ enum class AlgoMenuProps
     SimilarTextY = (int)MainWindowProps::windowSizeH - SimilarTextH - 22,
     SimilarTitleTextX = SimilarTextX + 60,
     SimilarTitleTextY = SimilarTextY + 10,
+
+    // Animation speed props
+    SliderTextX = 22 + settingsWidgetW + 222,
+    SliderTextY = (int)MainWindowProps::windowSizeH - 75,
+    SliderTextNumberX = SliderTextX + 139,
+    SliderTextNumberY = SliderTextY + 2,
+    SliderX = SliderTextX - 55,
+    SliderY = SliderTextY + 28,
+    SliderW = 270,
+    SliderH = 25,
+
+    // Animation controls props
+    PlayButtonX = SliderX + SliderW + 15,
+    PlayButtonY = SliderY,
+    StopButtonX = PlayButtonX + 33,
+    StopButtonY = PlayButtonY,
 
     // Complexities text props
     CompTextW = SimilarTextW,

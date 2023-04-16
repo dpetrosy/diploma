@@ -25,5 +25,9 @@
         <file>texts/comp_bfs.txt</file>
         <file>texts/comp_dfs.txt</file>
         <file>styles/comp_text.txt</file>
+        <file>images/play_button.png</file>
+        <file>images/pause_button.png</file>
+        <file>images/stop_button.png</file>
+        <file>videos/bfs_videos/video.mp4</file>
     </qresource>
 </RCC>

@@ -17,7 +17,6 @@ MainMenu::~MainMenu()
 {
     delete _Tree1Button;
     delete _Tree2Button;
-    delete _Tree3Button;
     delete _BFSButton;
     delete _DFSButton;
     delete _QuitButton;
@@ -41,7 +40,6 @@ void MainMenu::init()
     // Push Buttons
     _Tree1Button = new QPushButton();
     _Tree2Button = new QPushButton();
-    _Tree3Button = new QPushButton();
     _BFSButton = new QPushButton();
     _DFSButton = new QPushButton();
     _QuitButton = new QPushButton(this);
@@ -58,15 +56,13 @@ void MainMenu::makeMainMenu(MainWindow* mainWindow)
     // Set buttons sizes
     setPushButtonSize(_Tree1Button, (int)MainMenuProps::VerLayoutButtonsW, (int)MainMenuProps::VerLayoutButtonsH);
     setPushButtonSize(_Tree2Button, (int)MainMenuProps::VerLayoutButtonsW, (int)MainMenuProps::VerLayoutButtonsH);
-    setPushButtonSize(_Tree3Button, (int)MainMenuProps::VerLayoutButtonsW, (int)MainMenuProps::VerLayoutButtonsH);
     setPushButtonSize(_BFSButton, (int)MainMenuProps::HorLayoutButtonsW, (int)MainMenuProps::HorLayoutButtonsH);
     setPushButtonSize(_DFSButton, (int)MainMenuProps::HorLayoutButtonsW, (int)MainMenuProps::HorLayoutButtonsH);
     setPushButtonSize(_QuitButton, (int)MainMenuProps::VerLayoutButtonsW, (int)MainMenuProps::VerLayoutButtonsH);
 
     // Set buttons texts
-    _Tree1Button->setText("Tree1");
-    _Tree2Button->setText("Tree2");
-    _Tree3Button->setText("Tree3");
+    _Tree1Button->setText("Red-Black Tree");
+    _Tree2Button->setText("AVL Tree");
     _BFSButton->setText("BFS");
     _DFSButton->setText("DFS");
     _QuitButton->setText("Quit");
@@ -74,7 +70,6 @@ void MainMenu::makeMainMenu(MainWindow* mainWindow)
     // Set buttons fonts
     setPushButtonFont(_Tree1Button, (int)MainMenuProps::VerLayoutButtonsFont);
     setPushButtonFont(_Tree2Button, (int)MainMenuProps::VerLayoutButtonsFont);
-    setPushButtonFont(_Tree3Button, (int)MainMenuProps::VerLayoutButtonsFont);
     setPushButtonFont(_BFSButton, (int)MainMenuProps::HorLayoutButtonsFont);
     setPushButtonFont(_DFSButton, (int)MainMenuProps::HorLayoutButtonsFont);
     setPushButtonFont(_QuitButton, (int)MainMenuProps::HorLayoutButtonsFont);
@@ -82,7 +77,6 @@ void MainMenu::makeMainMenu(MainWindow* mainWindow)
     // Set buttons style
     ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _Tree1Button);
     ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _Tree2Button);
-    ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _Tree3Button);
     ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _BFSButton);
     ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _DFSButton);
     ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _QuitButton);
@@ -90,7 +84,6 @@ void MainMenu::makeMainMenu(MainWindow* mainWindow)
     // Add buttons to layouts
     _verLayout->addWidget(_Tree1Button);
     _verLayout->addWidget(_Tree2Button);
-    _verLayout->addWidget(_Tree3Button);
     _horLayout->addWidget(_BFSButton);
     _horLayout->addWidget(_DFSButton);
 
@@ -104,7 +97,6 @@ void MainMenu::makeMainMenu(MainWindow* mainWindow)
     // Make connects
     connect(_Tree1Button, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::Tree1));
     connect(_Tree2Button, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::Tree2));
-    connect(_Tree3Button, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::Tree3));
     connect(_BFSButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::BFS));
     connect(_DFSButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::DFS));
     connect(_QuitButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::showQuitWindow, mainWindow));

@@ -1,0 +1,14 @@
+
+
+    DFS is an algorithm for traversing or
+ searching tree or graph data structures.
+ The algorithm starts at the root node and
+ explores as far as possible along each
+ branch before backtracking. The time
+ complexity of BFS is O(V+E), where V is
+ the number of vertices and E is the number
+ of edges in the graph. However, in the
+ worst-case scenario, such as when the
+ graph is a implicit graph with branching
+ factor b searching to depth d, BFS takes
+ O(b^d) time to explore all the nodes.
