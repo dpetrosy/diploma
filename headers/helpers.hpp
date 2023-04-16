@@ -69,7 +69,7 @@ namespace VideosPaths
 enum class MainMenuProps
 {
     // Layouts Properties
-    VerLayoutW = ((int)MainWindowProps::windowSizeW / 10) * 4 - 115,
+    VerLayoutW = ((int)MainWindowProps::windowSizeW / 10) * 4 - 130,
     VerLayoutH = (int)MainWindowProps::windowSizeH / 5 - 22,
     VerLayoutX = ((int)MainWindowProps::windowSizeW - 326) / 2 - 13,
     HorLayoutX = VerLayoutX,

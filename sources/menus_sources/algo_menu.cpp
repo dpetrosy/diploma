@@ -76,7 +76,7 @@ void AlgoMenu::init()
     // Animation control buttons
     _playButton = new ClickableLabel(this);
     _stopButton = new ClickableLabel(this);
-    _isAnimationStopped = true;
+    _isAnimationPaused = true;
 
     // Animation player
     _videoPlayer = new QMediaPlayer(this);
@@ -103,8 +103,6 @@ void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
 
     // Stop button
     _stopButton->setEnabled(false);
-
-    //_videoPlayer->play();
 
     _isBFS = isBFS;
     if (isBFS)
@@ -148,21 +146,38 @@ void AlgoMenu::showContact()
     QMessageBox::information(this, "Contact", "You can contact with me by LinkedIn.\nMy login: dpetrosy");
 }
 
+void AlgoMenu::speedSliderValueChanged(int x)
+{
+    _animationSpeed = getSliderValueByPos(x);
+    _sliderNumberText->setText(QString::number(_animationSpeed) + "x");
+    _videoPlayer->setPlaybackRate(qreal(_animationSpeed));
+}
+
 void AlgoMenu::playButtonClicked()
 {
-    if (_isAnimationStopped)
+    if (_isAnimationPaused) // Play clicked
     {
         _videoWidget->show();
         _videoPlayer->play();
-        _isAnimationStopped = false;
+        _stopButton->setEnabled(true);
+        _isAnimationPaused = false;
         _playButton->setPixmap(QPixmap(ImagesPaths::PauseButtonImage));
     }
-    else
+    else // Pause clicked
     {
         _videoPlayer->pause();
-        _isAnimationStopped = true;
+        _isAnimationPaused = true;
         _playButton->setPixmap(QPixmap(ImagesPaths::PlayButtonImage));
     }
+}
+
+void AlgoMenu::stopButtonClicked()
+{
+    _videoWidget->hide();
+    _videoPlayer->stop();
+    _isAnimationPaused = true;
+    _stopButton->setEnabled(false);
+    _playButton->setPixmap(QPixmap(ImagesPaths::PlayButtonImage));
 }
 
 // Private util functions
@@ -330,6 +345,7 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     _stopButton->setPixmap(QPixmap(ImagesPaths::StopButtonImage));
     _stopButton->setCursor(Qt::PointingHandCursor);
     _stopButton->move((int)AlgoMenuProps::StopButtonX, (int)AlgoMenuProps::StopButtonY);
+    connect(_stopButton, &ClickableLabel::clickedLeftButton, this, &AlgoMenu::stopButtonClicked);
 
     // Animation player
     _videoPlayer->setSource(QUrl(VideosPaths::BFSVideosPath + "video.mp4"));
@@ -337,12 +353,6 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     _videoWidget->setGeometry(302, 80, 612, 490);
     _videoWidget->hide();
     _videoPlayer->stop();
-}
-
-void AlgoMenu::speedSliderValueChanged(int x)
-{
-    _animationSpeed = getSliderValueByPos(x);
-    _sliderNumberText->setText(QString::number(_animationSpeed) + "x");
 }
 
 double AlgoMenu::getSliderValueByPos(int x)

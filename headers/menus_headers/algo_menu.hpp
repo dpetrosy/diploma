@@ -31,7 +31,9 @@ public:
 private slots:
     void showAboutProject();
     void showContact();
+    void speedSliderValueChanged(int x);
     void playButtonClicked();
+    void stopButtonClicked();
 
 private:
     // Init
@@ -39,7 +41,6 @@ private:
 
     // Private util functions
     void makeBFSMenu(MainWindow* mainWindow);
-    void speedSliderValueChanged(int x);
     double getSliderValueByPos(int x);
     int getSliderPosByValue(double x);
 
@@ -105,7 +106,7 @@ public:
     // Animation control buttons
     ClickableLabel* _playButton;
     ClickableLabel* _stopButton;
-    bool            _isAnimationStopped;
+    bool            _isAnimationPaused;
 
     // Animation player
     QMediaPlayer*   _videoPlayer;
