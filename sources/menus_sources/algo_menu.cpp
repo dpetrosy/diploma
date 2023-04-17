@@ -27,6 +27,7 @@ void AlgoMenu::init()
     _graphSettingsText = new QLabel(_settingsWidget);
     _vertexText = new QLabel(_settingsWidget);
     _verticesComboBox = new QComboBox(_settingsWidget);
+    _startVertex = (int)BFSVertices::A;
 
     _widgetForSizeLayout = new QWidget(_settingsWidget);
     _sizeVerLayout = new QVBoxLayout(_widgetForSizeLayout);
@@ -180,6 +181,11 @@ void AlgoMenu::stopButtonClicked()
     _playButton->setPixmap(QPixmap(ImagesPaths::PlayButtonImage));
 }
 
+void AlgoMenu::verticesComboBoxIndexChanged(int index)
+{
+    _startVertex = getVertexByIndex(index);
+}
+
 // Private util functions
 void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
 {
@@ -203,6 +209,13 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     // Vertices ComboBox
     _verticesComboBox->setGeometry((int)AlgoMenuProps::VerticesComboBoxX, (int)AlgoMenuProps::VerticesComboBoxY, (int)AlgoMenuProps::VerticesComboBoxW, (int)AlgoMenuProps::VerticesComboBoxH);
     ::setStyleSheet(StylesPaths::ComboBoxStyle, _verticesComboBox);
+    _verticesComboBox->addItem(QString::number((int)BFSVertices::A));
+    _verticesComboBox->addItem(QString::number((int)BFSVertices::B));
+    _verticesComboBox->addItem(QString::number((int)BFSVertices::C));
+    _verticesComboBox->addItem(QString::number((int)BFSVertices::D));
+    _verticesComboBox->addItem(QString::number((int)BFSVertices::E));
+    _verticesComboBox->setCurrentIndex(0);
+    connect(_verticesComboBox, &QComboBox::currentIndexChanged, this, &AlgoMenu::verticesComboBoxIndexChanged);
 
     // Size Radio buttons
     _smallRadioButton->setText("Small Graph");
@@ -224,7 +237,7 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     _undirectedRadioButton->setChecked(true);
     _undirectedRadioButton->setFont(QFont("Segoe UI ", 12));
     _directButtonGroup->addButton(_directedRadioButton, (int)SizeRadioButtons::SmallButton);
-    _directButtonGroup->addButton(_undirectedRadioButton, (int)SizeRadioButtons::MediumButton);
+    _directButtonGroup->addButton(_undirectedRadioButton, (int)SizeRadioButtons::LargeButton);
     _directVerLayout->addWidget(_directedRadioButton);
     _directVerLayout->addWidget(_undirectedRadioButton);
     _widgetForDirectLayout->setLayout(_directVerLayout);
@@ -388,4 +401,36 @@ int AlgoMenu::getSliderPosByValue(double x)
         return 4;
     else
         return 1;
+}
+
+int AlgoMenu::getVertexByIndex(int index)
+{
+    switch (index)
+    {
+    default:
+        if (_isBFS)
+            return (int)BFSVertices::A;
+        else
+            return (int)DFSVertices::A;
+    case 1:
+        if (_isBFS)
+            return (int)BFSVertices::B;
+        else
+            return (int)DFSVertices::B;
+    case 2:
+        if (_isBFS)
+            return (int)BFSVertices::C;
+        else
+            return (int)DFSVertices::C;
+    case 3:
+        if (_isBFS)
+            return (int)BFSVertices::D;
+        else
+            return (int)DFSVertices::D;
+    case 4:
+        if (_isBFS)
+            return (int)BFSVertices::E;
+        else
+            return (int)DFSVertices::E;
+    }
 }

@@ -34,6 +34,7 @@ private slots:
     void speedSliderValueChanged(int x);
     void playButtonClicked();
     void stopButtonClicked();
+    void verticesComboBoxIndexChanged(int index);
 
 private:
     // Init
@@ -43,6 +44,7 @@ private:
     void makeBFSMenu(MainWindow* mainWindow);
     double getSliderValueByPos(int x);
     int getSliderPosByValue(double x);
+    int getVertexByIndex(int index);
 
 ////////////////////////////////////// TESTING
 public:
@@ -55,6 +57,7 @@ public:
     QLabel*         _graphSettingsText;
     QLabel*         _vertexText;
     QComboBox*      _verticesComboBox;
+    int             _startVertex;
 
     // Size Radio Buttons
     QWidget*        _widgetForSizeLayout;
