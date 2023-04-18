@@ -62,6 +62,11 @@ namespace ImagesPaths
     extern QString GraphsDirPath;
     extern QString SmallGraphImage;
     extern QString LargeGraphImage;
+    extern QString AnalysisDirPath;
+    extern QString PerfBFSImage1;
+    extern QString PerfBFSImage2;
+    extern QString PerfDFSImage1;
+    extern QString PerfDFSImage2;
 }
 
 namespace VideosPaths
@@ -116,12 +121,12 @@ enum class AlgoMenuProps
 
     SizeWidgetX = VerticesComboBoxX - 9,
     SizeWidgetY = VerticesComboBoxY + 40,
-    SizeWidgetW = 200,
+    SizeWidgetW = 125,
     SizeWidgetH = 67,
 
     DirectWidgetX = SizeWidgetX,
     DirectWidgetY = SizeWidgetY + SizeWidgetH + 7,
-    DirectWidgetW = SizeWidgetW,
+    DirectWidgetW = 162,
     DirectWidgetH = SizeWidgetH,
 
     // About text props
@@ -171,6 +176,14 @@ enum class AlgoMenuProps
     CodeTextY = CodeTitleTextY + 30,
     CodeTextW = SimilarTextW,
     CodeTextH = 156,
+
+    // Performance analysis
+    PerfWidgetW = 980,
+    PerfWidgetH = 434,
+    PerfImage1X = 18,
+    PerfImage1Y = 18,
+    PerfImage2X = PerfImage1X + 482 + 27,
+    PerfImage2Y = PerfImage1Y,
 };
 
 enum class SizeRadioButtons

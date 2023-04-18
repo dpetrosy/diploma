@@ -31,6 +31,11 @@ namespace ImagesPaths
     QString GraphsDirPath = ImagesDirPath + "graphs/";
     QString SmallGraphImage = GraphsDirPath + "small_graph.png";
     QString LargeGraphImage = GraphsDirPath + "large_graph.png";
+    QString AnalysisDirPath = ImagesDirPath + "analysis/";
+    QString PerfBFSImage1 = AnalysisDirPath + "perf_bfs1.png";
+    QString PerfBFSImage2 = AnalysisDirPath + "perf_bfs2.png";
+    QString PerfDFSImage1 = AnalysisDirPath + "perf_dfs1.png";
+    QString PerfDFSImage2 = AnalysisDirPath + "perf_dfs2.png";
 }
 
 namespace TextsPaths

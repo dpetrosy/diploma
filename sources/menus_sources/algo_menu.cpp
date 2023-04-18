@@ -66,10 +66,16 @@ void AlgoMenu::init()
     _analyzeMenu = new QMenu();
     _helpMenu = new QMenu();
     _exitMenu = new QMenu();
+    _perfAnalaysis = new QAction(this);
     _aboutProject = new QAction(this);
     _contact = new QAction(this);
     _returnToMainMenu = new QAction(this);
     _exitFromProgram = new QAction(this);
+
+    // Performance analysis
+    _perfAnalysisWidget = new QWidget();
+    _perfAnalysisImage1 = new QLabel(_perfAnalysisWidget);
+    _perfAnalysisImage2 = new QLabel(_perfAnalysisWidget);
 
     // Complexities
     _compText = new QLabel(this);
@@ -138,6 +144,22 @@ void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
 }
 
 // Private slots
+void AlgoMenu::showPerfAnalaysis()
+{
+    if (_isBFS)
+    {
+        _perfAnalysisImage1->setPixmap(QPixmap(ImagesPaths::PerfBFSImage1));
+        _perfAnalysisImage2->setPixmap(QPixmap(ImagesPaths::PerfBFSImage2));
+    }
+    else
+    {
+        _perfAnalysisImage1->setPixmap(QPixmap(ImagesPaths::PerfDFSImage1));
+        _perfAnalysisImage2->setPixmap(QPixmap(ImagesPaths::PerfDFSImage2));
+    }
+
+    _perfAnalysisWidget->show();
+}
+
 void AlgoMenu::showAboutProject()
 {
     QMessageBox::information(this, "About Project", "This is my diploma project: Data structures visualizer.");
@@ -163,8 +185,10 @@ void AlgoMenu::playButtonClicked()
         _videoWidget->show();
         _videoPlayer->play();
         _stopButton->setEnabled(true);
+        _stopButton->setToolTip("Stop");
         _isAnimationPaused = false;
         _playButton->setPixmap(QPixmap(ImagesPaths::PauseButtonImage));
+        _playButton->setToolTip("Pause");
         _graphPicture->hide();
     }
     else // Pause clicked
@@ -172,6 +196,7 @@ void AlgoMenu::playButtonClicked()
         _videoPlayer->pause();
         _isAnimationPaused = true;
         _playButton->setPixmap(QPixmap(ImagesPaths::PlayButtonImage));
+        _playButton->setToolTip("Play");
     }
 }
 
@@ -182,7 +207,9 @@ void AlgoMenu::stopButtonClicked()
     _graphPicture->show();
     _isAnimationPaused = true;
     _stopButton->setEnabled(false);
+    _stopButton->setToolTip("");
     _playButton->setPixmap(QPixmap(ImagesPaths::PlayButtonImage));
+    _playButton->setToolTip("Play");
 }
 
 void AlgoMenu::verticesComboBoxIndexChanged(int index)
@@ -215,9 +242,9 @@ void AlgoMenu::sizeButtonGroupPressed(int id)
 void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
 {
     // Settings Widget
-    _settingsWidget->setObjectName("myWidget");
+    _settingsWidget->setObjectName("SettingsWidget");
     _settingsWidget->setGeometry((int)AlgoMenuProps::settingsWidgetX, (int)AlgoMenuProps::settingsWidgetY, (int)AlgoMenuProps::settingsWidgetW, (int)AlgoMenuProps::settingsWidgetH);
-    _settingsWidget->setStyleSheet("#myWidget { background-color: #f7f6f5; border: 1px solid #d2d2d2; border-radius: 4px; }");
+    _settingsWidget->setStyleSheet("#SettingsWidget { background-color: #f7f6f5; border: 1px solid #d2d2d2; border-radius: 4px; }");
 
     // Settings text
     _graphSettingsText->setText("Choose graph settings");
@@ -240,13 +267,16 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     _verticesComboBox->addItem(QString::number((int)BFSVertices::D));
     _verticesComboBox->addItem(QString::number((int)BFSVertices::E));
     _verticesComboBox->setCurrentIndex(0);
+    _verticesComboBox->setCursor(Qt::PointingHandCursor);
     connect(_verticesComboBox, &QComboBox::currentIndexChanged, this, &AlgoMenu::verticesComboBoxIndexChanged);
 
     // Size Radio buttons
     _smallRadioButton->setText("Small Graph");
     _smallRadioButton->setFont(QFont("Segoe UI ", 12));
+    _smallRadioButton->setCursor(Qt::PointingHandCursor);
     _largeRadioButton->setText("Large Graph");
     _largeRadioButton->setFont(QFont("Segoe UI ", 12));
+    _largeRadioButton->setCursor(Qt::PointingHandCursor);
     _sizeButtonGroup->addButton(_smallRadioButton, (int)SizeRadioButtons::SmallButton);
     _sizeButtonGroup->addButton(_largeRadioButton, (int)SizeRadioButtons::LargeButton);
     _sizeVerLayout->addWidget(_smallRadioButton);
@@ -262,9 +292,11 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     // Direct Radio buttons
     _directedRadioButton->setText("Directed Graph");
     _directedRadioButton->setFont(QFont("Segoe UI ", 12));
+    _directedRadioButton->setCursor(Qt::PointingHandCursor);
     _undirectedRadioButton->setText("Undirected Graph");
     _undirectedRadioButton->setChecked(true);
     _undirectedRadioButton->setFont(QFont("Segoe UI ", 12));
+    _undirectedRadioButton->setCursor(Qt::PointingHandCursor);
     _directButtonGroup->addButton(_directedRadioButton, (int)SizeRadioButtons::SmallButton);
     _directButtonGroup->addButton(_undirectedRadioButton, (int)SizeRadioButtons::LargeButton);
     _directVerLayout->addWidget(_directedRadioButton);
@@ -332,8 +364,9 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     // MenuBar
     _analyzeMenu->setTitle("Analyze");
     _analyzeMenu->addMenu(_compareWithMenu);
-    _analyzeMenu->addAction("Time Complexity Analysis");
-    _analyzeMenu->addAction("Space Complexity Analysis");
+    _analyzeMenu->addAction(_perfAnalaysis);
+    _perfAnalaysis->setText("Performance Analysis");
+    connect(_perfAnalaysis, &QAction::triggered, this, &AlgoMenu::showPerfAnalaysis);
 
     _compareWithMenu->setTitle("Comapre With...");
     _compareWithMenu->addAction("All Algorithms");
@@ -367,6 +400,18 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     _menuBar->setFixedHeight(22);
     //
 
+    // Performance analysis
+    _perfAnalysisWidget->hide();
+    _perfAnalysisWidget->setWindowTitle("Performance Analysis");
+    _perfAnalysisWidget->setWindowModality(Qt::ApplicationModal);
+    _perfAnalysisWidget->setFixedSize((int)AlgoMenuProps::PerfWidgetW, (int)AlgoMenuProps::PerfWidgetH);
+    _perfAnalysisWidget->setObjectName("PerfWidget");
+    _perfAnalysisWidget->setStyleSheet("#PerfWidget { background-color: #ffffff; }");
+    _perfAnalysisImage1->setPixmap(QPixmap(ImagesPaths::PerfBFSImage1));
+    _perfAnalysisImage1->move((int)AlgoMenuProps::PerfImage1X, (int)AlgoMenuProps::PerfImage1Y);
+    _perfAnalysisImage2->setPixmap(QPixmap(ImagesPaths::PerfBFSImage2));
+    _perfAnalysisImage2->move((int)AlgoMenuProps::PerfImage2X, (int)AlgoMenuProps::PerfImage2Y);
+
     // Complexities title text
     _compTitleText->setText("Complexities");
     ::setStyleSheet(StylesPaths::SimilarTitleStyle, _compTitleText);
@@ -381,11 +426,13 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     _playButton->setPixmap(QPixmap(ImagesPaths::PlayButtonImage));
     _playButton->setCursor(Qt::PointingHandCursor);
     _playButton->move((int)AlgoMenuProps::PlayButtonX, (int)AlgoMenuProps::PlayButtonY);
+    _playButton->setToolTip("Play");
     connect(_playButton, &ClickableLabel::clickedLeftButton, this, &AlgoMenu::playButtonClicked);
 
     // Stop button
     _stopButton->setPixmap(QPixmap(ImagesPaths::StopButtonImage));
     _stopButton->setCursor(Qt::PointingHandCursor);
+    _stopButton->setToolTip("");
     _stopButton->move((int)AlgoMenuProps::StopButtonX, (int)AlgoMenuProps::StopButtonY);
     connect(_stopButton, &ClickableLabel::clickedLeftButton, this, &AlgoMenu::stopButtonClicked);
 

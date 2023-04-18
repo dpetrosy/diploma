@@ -32,5 +32,9 @@
         <file>images/graphs/large_graph.png</file>
         <file>videos/bfs_videos/video1.mp4</file>
         <file>images/graphs/small_graph.png</file>
+        <file>images/analysis/perf_bfs1.png</file>
+        <file>images/analysis/perf_bfs2.png</file>
+        <file>images/analysis/perf_dfs1.png</file>
+        <file>images/analysis/perf_dfs2.png</file>
     </qresource>
 </RCC>

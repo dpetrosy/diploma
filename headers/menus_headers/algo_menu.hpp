@@ -29,6 +29,7 @@ public:
     void prepareMenuBeforeSwitch(bool isBFS);
 
 private slots:
+    void showPerfAnalaysis();
     void showAboutProject();
     void showContact();
     void speedSliderValueChanged(int x);
@@ -99,10 +100,16 @@ public:
     QMenu*          _compareWithMenu;
     QMenu*          _helpMenu;
     QMenu*          _exitMenu;
+    QAction*        _perfAnalaysis;
     QAction*        _aboutProject;
     QAction*        _contact;
     QAction*        _returnToMainMenu;
     QAction*        _exitFromProgram;
+
+    // Performance analysis
+    QWidget*        _perfAnalysisWidget;
+    QLabel*         _perfAnalysisImage1;
+    QLabel*         _perfAnalysisImage2;
 
     // Complexities
     QLabel*         _compTitleText;
