@@ -20,13 +20,17 @@ namespace StylesPaths
 
 namespace ImagesPaths
 {
-    QString ImagesPath = ":/images/";
-    QString BackgroundsPath = ImagesPath + "backgrounds/";
+    QString ImagesDirPath = ":/images/";
+    QString BackgroundsDirPath = ImagesDirPath + "backgrounds/";
     QString MainMenuBKGImage = "background";
     QString MenusBKGImage = "white";
-    QString PauseButtonImage = ImagesPath + "pause_button.png";
-    QString PlayButtonImage = ImagesPath + "play_button.png";
-    QString StopButtonImage = ImagesPath + "stop_button.png";
+    QString ButtonsDirPath = ImagesDirPath + "buttons/";
+    QString PauseButtonImage = ButtonsDirPath + "pause_button.png";
+    QString PlayButtonImage = ButtonsDirPath + "play_button.png";
+    QString StopButtonImage = ButtonsDirPath + "stop_button.png";
+    QString GraphsDirPath = ImagesDirPath + "graphs/";
+    QString SmallGraphImage = GraphsDirPath + "small_graph.png";
+    QString LargeGraphImage = GraphsDirPath + "large_graph.png";
 }
 
 namespace TextsPaths

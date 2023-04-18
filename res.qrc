@@ -25,9 +25,12 @@
         <file>texts/comp_bfs.txt</file>
         <file>texts/comp_dfs.txt</file>
         <file>styles/comp_text.txt</file>
-        <file>images/play_button.png</file>
-        <file>images/pause_button.png</file>
-        <file>images/stop_button.png</file>
         <file>videos/bfs_videos/video.mp4</file>
+        <file>images/buttons/pause_button.png</file>
+        <file>images/buttons/play_button.png</file>
+        <file>images/buttons/stop_button.png</file>
+        <file>images/graphs/large_graph.png</file>
+        <file>videos/bfs_videos/video1.mp4</file>
+        <file>images/graphs/small_graph.png</file>
     </qresource>
 </RCC>

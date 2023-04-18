@@ -35,6 +35,7 @@ private slots:
     void playButtonClicked();
     void stopButtonClicked();
     void verticesComboBoxIndexChanged(int index);
+    void sizeButtonGroupPressed(int id);
 
 private:
     // Init
@@ -65,6 +66,7 @@ public:
     QButtonGroup*   _sizeButtonGroup;
     QRadioButton*   _smallRadioButton;
     QRadioButton*   _largeRadioButton;
+    QLabel*         _graphPicture;
 
     // Direct Radio Buttons
     QWidget*       _widgetForDirectLayout;

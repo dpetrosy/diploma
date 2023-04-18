@@ -34,6 +34,7 @@ void AlgoMenu::init()
     _sizeButtonGroup = new QButtonGroup(_widgetForSizeLayout);
     _smallRadioButton = new QRadioButton();
     _largeRadioButton = new QRadioButton();
+    _graphPicture = new QLabel(this);
 
     _widgetForDirectLayout = new QWidget(_settingsWidget);
     _directVerLayout = new QVBoxLayout(_widgetForDirectLayout);
@@ -149,6 +150,7 @@ void AlgoMenu::showContact()
 
 void AlgoMenu::speedSliderValueChanged(int x)
 {
+    _speedSlider->setValue(x);
     _animationSpeed = getSliderValueByPos(x);
     _sliderNumberText->setText(QString::number(_animationSpeed) + "x");
     _videoPlayer->setPlaybackRate(qreal(_animationSpeed));
@@ -163,6 +165,7 @@ void AlgoMenu::playButtonClicked()
         _stopButton->setEnabled(true);
         _isAnimationPaused = false;
         _playButton->setPixmap(QPixmap(ImagesPaths::PauseButtonImage));
+        _graphPicture->hide();
     }
     else // Pause clicked
     {
@@ -176,6 +179,7 @@ void AlgoMenu::stopButtonClicked()
 {
     _videoWidget->hide();
     _videoPlayer->stop();
+    _graphPicture->show();
     _isAnimationPaused = true;
     _stopButton->setEnabled(false);
     _playButton->setPixmap(QPixmap(ImagesPaths::PlayButtonImage));
@@ -184,6 +188,27 @@ void AlgoMenu::stopButtonClicked()
 void AlgoMenu::verticesComboBoxIndexChanged(int index)
 {
     _startVertex = getVertexByIndex(index);
+}
+
+void AlgoMenu::sizeButtonGroupPressed(int id)
+{
+    stopButtonClicked();
+    speedSliderValueChanged(2);
+
+    if (id == 0) // small graph choosed
+    {
+        _graphPicture->setPixmap(QPixmap(ImagesPaths::SmallGraphImage));
+        _videoPlayer->setSource(QUrl(VideosPaths::BFSVideosPath + "video1.mp4"));
+        _videoWidget->setGeometry(302, 80, 628, 460);
+        _graphPicture->setGeometry(302, 80, 628, 460);
+    }
+    else // large graph choosed
+    {
+        _graphPicture->setPixmap(QPixmap(ImagesPaths::LargeGraphImage));
+        _videoPlayer->setSource(QUrl(VideosPaths::BFSVideosPath + "video.mp4"));
+        _videoWidget->setGeometry(302, 80, 612, 490);
+        _graphPicture->setGeometry(302, 80, 612, 490);
+    }
 }
 
 // Private util functions
@@ -219,7 +244,6 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
 
     // Size Radio buttons
     _smallRadioButton->setText("Small Graph");
-    _smallRadioButton->setChecked(true);
     _smallRadioButton->setFont(QFont("Segoe UI ", 12));
     _largeRadioButton->setText("Large Graph");
     _largeRadioButton->setFont(QFont("Segoe UI ", 12));
@@ -229,6 +253,11 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     _sizeVerLayout->addWidget(_largeRadioButton);
     _widgetForSizeLayout->setLayout(_sizeVerLayout);
     _widgetForSizeLayout->setGeometry((int)AlgoMenuProps::SizeWidgetX, (int)AlgoMenuProps::SizeWidgetY, (int)AlgoMenuProps::SizeWidgetW, (int)AlgoMenuProps::SizeWidgetH);
+    connect(_sizeButtonGroup, &QButtonGroup::idPressed, this, &AlgoMenu::sizeButtonGroupPressed);
+
+    // Graph picture
+    _graphPicture->setPixmap(QPixmap(ImagesPaths::SmallGraphImage));
+    _graphPicture->move(302, 80);
 
     // Direct Radio buttons
     _directedRadioButton->setText("Directed Graph");
@@ -361,9 +390,9 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     connect(_stopButton, &ClickableLabel::clickedLeftButton, this, &AlgoMenu::stopButtonClicked);
 
     // Animation player
-    _videoPlayer->setSource(QUrl(VideosPaths::BFSVideosPath + "video.mp4"));
+    _videoPlayer->setSource(QUrl(VideosPaths::BFSVideosPath + "video1.mp4"));
     _videoPlayer->setVideoOutput(_videoWidget);
-    _videoWidget->setGeometry(302, 80, 612, 490);
+    _videoWidget->setGeometry(302, 80, 628, 460);
     _videoWidget->hide();
     _videoPlayer->stop();
 }

@@ -51,13 +51,17 @@ namespace TextsPaths
 
 namespace ImagesPaths
 {
-    extern QString ImagesPath;
-    extern QString BackgroundsPath;
+    extern QString ImagesDirPath;
+    extern QString BackgroundsDirPath;
     extern QString MainMenuBKGImage;
     extern QString MenusBKGImage;
+    extern QString ButtonsDirPath;
     extern QString PauseButtonImage;
     extern QString PlayButtonImage;
     extern QString StopButtonImage;
+    extern QString GraphsDirPath;
+    extern QString SmallGraphImage;
+    extern QString LargeGraphImage;
 }
 
 namespace VideosPaths

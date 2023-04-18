@@ -85,7 +85,7 @@ void MainWindow::exitFromProgram(int signal)
 // Public util functions
 void MainWindow::setBackgroundImage(const QString& image)
 {
-    _backgroundImage.load(ImagesPaths::BackgroundsPath + image + ".jpg");
+    _backgroundImage.load(ImagesPaths::BackgroundsDirPath + image + ".jpg");
     _backgroundImage = _backgroundImage.scaled(this->size(), Qt::IgnoreAspectRatio);
     _palette.setBrush(QPalette::Window, _backgroundImage);
     this->setPalette(_palette);
