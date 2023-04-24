@@ -15,6 +15,7 @@
 #include <QMediaPlayer>
 #include <QVideoWidget>
 
+#include "helpers.hpp"
 #include "predefined_classes.hpp"
 
 class AlgoMenu : public QWidget
@@ -29,6 +30,7 @@ public:
     void prepareMenuBeforeSwitch(bool isBFS);
 
 private slots:
+    void showCompareWith(CompareWithAlgos algo);
     void showPerfAnalaysis();
     void showAboutProject();
     void showContact();
@@ -48,8 +50,7 @@ private:
     int getSliderPosByValue(double x);
     int getVertexByIndex(int index);
 
-////////////////////////////////////// TESTING
-public:
+private:
     bool _isBFS;
 
     // Graph settings
@@ -100,11 +101,21 @@ public:
     QMenu*          _compareWithMenu;
     QMenu*          _helpMenu;
     QMenu*          _exitMenu;
+    QAction*        _compareWithBFS;
+    QAction*        _compareWithDFS;
+    QAction*        _compareWithBeam;
+    QAction*        _compareWithDijkstra;
+    QAction*        _compareWithBidirectional;
+    QAction*        _compareWithAll;
     QAction*        _perfAnalaysis;
     QAction*        _aboutProject;
     QAction*        _contact;
     QAction*        _returnToMainMenu;
     QAction*        _exitFromProgram;
+
+    // Compare with
+    QWidget*        _compareWithWidget;
+    QLabel*         _compareWithImage;
 
     // Performance analysis
     QWidget*        _perfAnalysisWidget;

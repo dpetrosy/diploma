@@ -66,11 +66,21 @@ void AlgoMenu::init()
     _analyzeMenu = new QMenu();
     _helpMenu = new QMenu();
     _exitMenu = new QMenu();
+    _compareWithBFS = new QAction(this);
+    _compareWithDFS = new QAction(this);
+    _compareWithBeam = new QAction(this);
+    _compareWithDijkstra = new QAction(this);
+    _compareWithBidirectional = new QAction(this);
+    _compareWithAll = new QAction(this);
     _perfAnalaysis = new QAction(this);
     _aboutProject = new QAction(this);
     _contact = new QAction(this);
     _returnToMainMenu = new QAction(this);
     _exitFromProgram = new QAction(this);
+
+    // Compare with
+    _compareWithWidget = new QWidget();
+    _compareWithImage = new QLabel(_compareWithWidget);
 
     // Performance analysis
     _perfAnalysisWidget = new QWidget();
@@ -112,6 +122,9 @@ void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
     // Stop button
     _stopButton->setEnabled(false);
 
+    // Compare with menu
+    _compareWithMenu->clear();
+
     _isBFS = isBFS;
     if (isBFS)
     {
@@ -126,6 +139,13 @@ void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
 
         // Complexities text
         _compText->setText(getTextFromFile(TextsPaths::CompBFSPath));
+
+        // Comare with menu
+        _compareWithMenu->addAction(_compareWithDFS);
+        _compareWithMenu->addAction(_compareWithBeam);
+        _compareWithMenu->addAction(_compareWithDijkstra);
+        _compareWithMenu->addAction(_compareWithBidirectional);
+        _compareWithMenu->addAction(_compareWithAll);
     }
     else
     {
@@ -140,10 +160,81 @@ void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
 
         // Complexities text
         _compText->setText(getTextFromFile(TextsPaths::CompDFSPath));
+
+        // Comare with menu
+        _compareWithMenu->addAction(_compareWithBFS);
+        _compareWithMenu->addAction(_compareWithBeam);
+        _compareWithMenu->addAction(_compareWithDijkstra);
+        _compareWithMenu->addAction(_compareWithBidirectional);
+        _compareWithMenu->addAction(_compareWithAll);
     }
 }
 
 // Private slots
+void AlgoMenu::showCompareWith(CompareWithAlgos algo)
+{
+    _compareWithWidget->show();
+    _compareWithImage->setFixedWidth(1000);
+    _compareWithImage->setFixedHeight(430);
+
+    if (_isBFS)
+    {
+        switch (algo)
+        {
+        default:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithDFS));
+            _compareWithWidget->setFixedSize(810, 470);
+            return;
+        case CompareWithAlgos::Beam:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithBeam));
+            _compareWithWidget->setFixedSize(843, 470);
+            return;
+        case CompareWithAlgos::Dijkstra:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithDijkstra));
+            _compareWithWidget->setFixedSize(870, 470);
+            return;
+        case CompareWithAlgos::Bidirectional:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithBidirectional));
+            _compareWithWidget->setFixedSize(810, 470);
+            return;
+        case CompareWithAlgos::All:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithAll));
+            _compareWithImage->setFixedWidth(1520);
+            _compareWithImage->setFixedHeight(800);
+            _compareWithWidget->setFixedSize(1560, 850);
+            return;
+        }
+    }
+    else
+    {
+        switch (algo)
+        {
+        default:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithBFS));
+            _compareWithWidget->setFixedSize(825, 470);
+            return;
+        case CompareWithAlgos::Beam:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithBeam));
+            _compareWithWidget->setFixedSize(1037, 463);
+            return;
+        case CompareWithAlgos::Dijkstra:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithDijkstra));
+            _compareWithWidget->setFixedSize(1045, 463);
+            return;
+        case CompareWithAlgos::Bidirectional:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithBidirectional));
+            _compareWithWidget->setFixedSize(1000, 463);
+            return;
+        case CompareWithAlgos::All:
+            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithAll));
+            _compareWithImage->setFixedWidth(1520);
+            _compareWithImage->setFixedHeight(800);
+            _compareWithWidget->setFixedSize(1560, 850);
+            return;
+        }
+    }
+}
+
 void AlgoMenu::showPerfAnalaysis()
 {
     if (_isBFS)
@@ -369,12 +460,18 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     connect(_perfAnalaysis, &QAction::triggered, this, &AlgoMenu::showPerfAnalaysis);
 
     _compareWithMenu->setTitle("Comapre With...");
-    _compareWithMenu->addAction("All Algorithms");
-    _compareWithMenu->addAction("DFS Algorithm");
-    _compareWithMenu->addAction("Dijkstra's Algorithm");
-    _compareWithMenu->addAction("Bidirectional Search");
-    _compareWithMenu->addAction("Hill Climbing Algorithm");
-    _compareWithMenu->addAction("Beam Search Algorithm");
+    _compareWithBFS->setText("BFS Algorithm");
+    _compareWithDFS->setText("DFS Algorithm");
+    _compareWithBeam->setText("Beam Search");
+    _compareWithDijkstra->setText("Dijkstra's Algorithm");
+    _compareWithBidirectional->setText("Bidirectional Search");
+    _compareWithAll->setText("All Algorithms");
+    connect(_compareWithBFS, &QAction::triggered, this, std::bind(&AlgoMenu::showCompareWith, this, CompareWithAlgos::BFS));
+    connect(_compareWithDFS, &QAction::triggered, this, std::bind(&AlgoMenu::showCompareWith, this, CompareWithAlgos::DFS));
+    connect(_compareWithBeam, &QAction::triggered, this, std::bind(&AlgoMenu::showCompareWith, this, CompareWithAlgos::Beam));
+    connect(_compareWithDijkstra, &QAction::triggered, this, std::bind(&AlgoMenu::showCompareWith, this, CompareWithAlgos::Dijkstra));
+    connect(_compareWithBidirectional, &QAction::triggered, this, std::bind(&AlgoMenu::showCompareWith, this, CompareWithAlgos::Bidirectional));
+    connect(_compareWithAll, &QAction::triggered, this, std::bind(&AlgoMenu::showCompareWith, this, CompareWithAlgos::All));
 
     _helpMenu->setTitle("Help");
     _helpMenu->addAction(_aboutProject);
@@ -399,6 +496,16 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     _menuBar->setFixedWidth((int)MainWindowProps::windowSizeW);
     _menuBar->setFixedHeight(22);
     //
+
+    // Compare with
+    _compareWithWidget->hide();
+    _compareWithWidget->setWindowTitle("Comapare With");
+    _compareWithWidget->setWindowModality(Qt::ApplicationModal);
+    _compareWithWidget->setFixedSize((int)AlgoMenuProps::CompareWidgetW, (int)AlgoMenuProps::CompareWidgetH);
+    _compareWithWidget->setObjectName("CompareWidget");
+    _compareWithWidget->setStyleSheet("#CompareWidget { background-color: #ffffff; }");
+    _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithBeam));
+    _compareWithImage->move((int)AlgoMenuProps::CompareImageX, (int)AlgoMenuProps::CompareImageY);
 
     // Performance analysis
     _perfAnalysisWidget->hide();

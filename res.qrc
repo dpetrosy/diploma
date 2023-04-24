@@ -36,5 +36,14 @@
         <file>images/analysis/perf_bfs2.png</file>
         <file>images/analysis/perf_dfs1.png</file>
         <file>images/analysis/perf_dfs2.png</file>
+        <file>images/analysis/compare_with/bfs_with_beam.png</file>
+        <file>images/analysis/compare_with/bfs_with_bidirectional.png</file>
+        <file>images/analysis/compare_with/bfs_with_dfs.png</file>
+        <file>images/analysis/compare_with/bfs_with_dijkstra.png</file>
+        <file>images/analysis/compare_with/bfs_with_all.png</file>
+        <file>images/analysis/compare_with/dfs_with_beam.png</file>
+        <file>images/analysis/compare_with/dfs_with_bfs.png</file>
+        <file>images/analysis/compare_with/dfs_with_bidirectional.png</file>
+        <file>images/analysis/compare_with/dfs_with_dijkstra.png</file>
     </qresource>
 </RCC>

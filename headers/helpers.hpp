@@ -55,14 +55,34 @@ namespace ImagesPaths
     extern QString BackgroundsDirPath;
     extern QString MainMenuBKGImage;
     extern QString MenusBKGImage;
+
+    // Buttons
     extern QString ButtonsDirPath;
     extern QString PauseButtonImage;
     extern QString PlayButtonImage;
     extern QString StopButtonImage;
+
+    // Graphs
     extern QString GraphsDirPath;
     extern QString SmallGraphImage;
     extern QString LargeGraphImage;
+
+    // Comapre with
     extern QString AnalysisDirPath;
+    extern QString CompareWithDirPath;
+    extern QString BFSWithDFS;
+    extern QString BFSWithBeam;
+    extern QString BFSWithDijkstra;
+    extern QString BFSWithBidirectional;
+    extern QString BFSWithAll;
+
+    extern QString DFSWithBFS;
+    extern QString DFSWithBeam;
+    extern QString DFSWithDijkstra;
+    extern QString DFSWithBidirectional;
+    extern QString DFSWithAll;
+
+    // Performance analysis
     extern QString PerfBFSImage1;
     extern QString PerfBFSImage2;
     extern QString PerfDFSImage1;
@@ -177,6 +197,12 @@ enum class AlgoMenuProps
     CodeTextW = SimilarTextW,
     CodeTextH = 156,
 
+    // Compare with
+    CompareWidgetW = 1000,
+    CompareWidgetH = 500,
+    CompareImageX = 25,
+    CompareImageY = 25,
+
     // Performance analysis
     PerfWidgetW = 980,
     PerfWidgetH = 434,
@@ -214,6 +240,16 @@ enum class DFSVertices
     C = 3,
     D = 4,
     E = 5,
+};
+
+enum class CompareWithAlgos
+{
+    BFS,
+    DFS,
+    Beam,
+    Dijkstra,
+    Bidirectional,
+    All,
 };
 
 #endif // HELPERS_HPP
