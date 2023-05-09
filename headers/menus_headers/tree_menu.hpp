@@ -1,5 +1,5 @@
-#ifndef ALGO_MENU_HPP
-#define ALGO_MENU_HPP
+#ifndef TREE_MENU_HPP
+#define TREE_MENU_HPP
 
 #include <QDebug>
 #include <QWidget>
@@ -18,26 +18,26 @@
 #include "helpers.hpp"
 #include "predefined_classes.hpp"
 
-class AlgoMenu : public QWidget
+class TreeMenu : public QWidget
 {
     Q_OBJECT
 
 public:
-    AlgoMenu(bool isBFS, MainWindow* mainWindow, QWidget* parent = nullptr);
-    virtual ~AlgoMenu();
+    TreeMenu(bool isRBTree, MainWindow* mainWindow, QWidget* parent = nullptr);
+    virtual ~TreeMenu();
 
     // public util functions
-    void prepareMenuBeforeSwitch(bool isBFS);
+    void prepareMenuBeforeSwitch(bool isRBTree);
 
 private slots:
-    void showCompareWith(CompareWithAlgos algo);
+//    void showCompareWith(CompareWithTrees tree);
     void showPerfAnalaysis();
     void showAboutProject();
     void showContact();
     void speedSliderValueChanged(int x);
     void playButtonClicked();
     void stopButtonClicked();
-    void verticesComboBoxIndexChanged(int index);
+    void operationsButtonGroupPressed(int id);
     void sizeButtonGroupPressed(int id);
 
 private:
@@ -45,23 +45,26 @@ private:
     void init();
 
     // Private util functions
-    void makeAlgoMenu(MainWindow* mainWindow);
+    void makeTreeMenu(MainWindow* mainWindow);
     double getSliderValueByPos(int x);
     int getSliderPosByValue(double x);
     int getVertexByIndex(int index);
-    void setVideoToPlayer(QString path);
 
 private:
-    bool _isBFS;
+    bool _isRBTree;
 
     // Graph settings
     QWidget*        _settingsWidget;
+    QLabel*         _treeSettingsText;
+    QLabel*         _operationsText;
 
-    // Start vertex combobox
-    QLabel*         _graphSettingsText;
-    QLabel*         _vertexText;
-    QComboBox*      _verticesComboBox;
-    int             _startVertex;
+    // Operations Radio Buttons
+    QWidget*        _widgetForOperationsLayout;
+    QVBoxLayout*    _operationsVerLayout;
+    QButtonGroup*   _operationsButtonGroup;
+    QRadioButton*   _findRadioButton;
+    QRadioButton*   _insertRadioButton;
+    QRadioButton*   _deleteRadioButton;
 
     // Size Radio Buttons
     QWidget*        _widgetForSizeLayout;
@@ -69,15 +72,7 @@ private:
     QButtonGroup*   _sizeButtonGroup;
     QRadioButton*   _smallRadioButton;
     QRadioButton*   _largeRadioButton;
-    QLabel*         _graphPicture;
-    bool            _isSmallGraph;
-
-    // Direct Radio Buttons
-    QWidget*       _widgetForDirectLayout;
-    QVBoxLayout*    _directVerLayout;
-    QButtonGroup*   _directButtonGroup;
-    QRadioButton*   _directedRadioButton;
-    QRadioButton*   _undirectedRadioButton;
+    QLabel*         _treePicture;
 
     // Animation speed contrlos
     QLabel*         _sliderText;
@@ -85,15 +80,11 @@ private:
     QSlider*        _speedSlider;
     double          _animationSpeed;
 
-    // Pseudocode
-    QLabel*         _codeTitleText;
-    QLabel*         _codeText;
-
-    // About algo
+    // About tree
     QLabel*         _aboutTitleText;
     QLabel*         _aboutText;
 
-    // Similar algos
+    // Similar trees
     QLabel*         _similarTitleText;
     QTextEdit*      _similarText;
 
@@ -103,26 +94,25 @@ private:
     QMenu*          _compareWithMenu;
     QMenu*          _helpMenu;
     QMenu*          _exitMenu;
-    QAction*        _compareWithBFS;
-    QAction*        _compareWithDFS;
-    QAction*        _compareWithBeam;
-    QAction*        _compareWithDijkstra;
-    QAction*        _compareWithBidirectional;
-    QAction*        _compareWithAll;
+////    QAction*        _compareWithBFS;
+////    QAction*        _compareWithDFS;
+////    QAction*        _compareWithBeam;
+////    QAction*        _compareWithDijkstra;
+////    QAction*        _compareWithBidirectional;
+////    QAction*        _compareWithAll;
     QAction*        _perfAnalaysis;
     QAction*        _aboutProject;
     QAction*        _contact;
     QAction*        _returnToMainMenu;
     QAction*        _exitFromProgram;
 
-    // Compare with
-    QWidget*        _compareWithWidget;
-    QLabel*         _compareWithImage;
+//    // Compare with
+//    QWidget*        _compareWithWidget;
+//    QLabel*         _compareWithImage;
 
     // Performance analysis
     QWidget*        _perfAnalysisWidget;
-    QLabel*         _perfAnalysisImage1;
-    QLabel*         _perfAnalysisImage2;
+    QLabel*         _perfAnalysisImage;
 
     // Complexities
     QLabel*         _compTitleText;
@@ -136,9 +126,6 @@ private:
     // Animation player
     QMediaPlayer*   _videoPlayer;
     QVideoWidget*   _videoWidget;
-    QString         _videosPrefix;
-    QString         _videosPostfix;
-    QString         _videosExtension;
 };
 
-#endif // ALGO_MENU_HPP
+#endif // TREE_MENU_HPP

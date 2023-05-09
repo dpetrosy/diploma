@@ -34,8 +34,8 @@ private:
     QHBoxLayout* _horLayout;
 
     // PushButtons
-    QPushButton* _Tree1Button;
-    QPushButton* _Tree2Button;
+    QPushButton* _RBTreeButton;
+    QPushButton* _AVLTreeButton;
     QPushButton* _BFSButton;
     QPushButton* _DFSButton;
     QPushButton* _QuitButton;

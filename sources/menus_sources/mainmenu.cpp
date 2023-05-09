@@ -15,8 +15,8 @@ MainMenu::MainMenu(MainWindow* mainWindow, QWidget* parent) :
 
 MainMenu::~MainMenu()
 {
-    delete _Tree1Button;
-    delete _Tree2Button;
+    delete _RBTreeButton;
+    delete _AVLTreeButton;
     delete _BFSButton;
     delete _DFSButton;
     delete _QuitButton;
@@ -38,52 +38,47 @@ void MainMenu::init()
     _horLayout = new QHBoxLayout(_widgetForHorLayout);
 
     // Push Buttons
-    _Tree1Button = new QPushButton();
-    _Tree2Button = new QPushButton();
+    _RBTreeButton = new QPushButton();
+    _AVLTreeButton = new QPushButton();
     _BFSButton = new QPushButton();
     _DFSButton = new QPushButton();
     _QuitButton = new QPushButton(this);
 }
 
-// Public util functions
-//void MainMenu::makeMenuBeforeSwitch(SettingsMenu* settingMenuWidget, MainWindow* mainWindow)
-//{
-//}
-
 // Private util functions
 void MainMenu::makeMainMenu(MainWindow* mainWindow)
 {
     // Set buttons sizes
-    setPushButtonSize(_Tree1Button, (int)MainMenuProps::VerLayoutButtonsW, (int)MainMenuProps::VerLayoutButtonsH);
-    setPushButtonSize(_Tree2Button, (int)MainMenuProps::VerLayoutButtonsW, (int)MainMenuProps::VerLayoutButtonsH);
+    setPushButtonSize(_RBTreeButton, (int)MainMenuProps::VerLayoutButtonsW, (int)MainMenuProps::VerLayoutButtonsH);
+    setPushButtonSize(_AVLTreeButton, (int)MainMenuProps::VerLayoutButtonsW, (int)MainMenuProps::VerLayoutButtonsH);
     setPushButtonSize(_BFSButton, (int)MainMenuProps::HorLayoutButtonsW, (int)MainMenuProps::HorLayoutButtonsH);
     setPushButtonSize(_DFSButton, (int)MainMenuProps::HorLayoutButtonsW, (int)MainMenuProps::HorLayoutButtonsH);
     setPushButtonSize(_QuitButton, (int)MainMenuProps::VerLayoutButtonsW, (int)MainMenuProps::VerLayoutButtonsH);
 
     // Set buttons texts
-    _Tree1Button->setText("Red-Black Tree");
-    _Tree2Button->setText("AVL Tree");
+    _RBTreeButton->setText("Red-Black Tree");
+    _AVLTreeButton->setText("AVL Tree");
     _BFSButton->setText("BFS");
     _DFSButton->setText("DFS");
     _QuitButton->setText("Quit");
 
     // Set buttons fonts
-    setPushButtonFont(_Tree1Button, (int)MainMenuProps::VerLayoutButtonsFont);
-    setPushButtonFont(_Tree2Button, (int)MainMenuProps::VerLayoutButtonsFont);
+    setPushButtonFont(_RBTreeButton, (int)MainMenuProps::VerLayoutButtonsFont);
+    setPushButtonFont(_AVLTreeButton, (int)MainMenuProps::VerLayoutButtonsFont);
     setPushButtonFont(_BFSButton, (int)MainMenuProps::HorLayoutButtonsFont);
     setPushButtonFont(_DFSButton, (int)MainMenuProps::HorLayoutButtonsFont);
     setPushButtonFont(_QuitButton, (int)MainMenuProps::HorLayoutButtonsFont);
 
     // Set buttons style
-    ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _Tree1Button);
-    ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _Tree2Button);
+    ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _RBTreeButton);
+    ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _AVLTreeButton);
     ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _BFSButton);
     ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _DFSButton);
     ::setStyleSheet(StylesPaths::MainMenuButtonStyle, _QuitButton);
 
     // Add buttons to layouts
-    _verLayout->addWidget(_Tree1Button);
-    _verLayout->addWidget(_Tree2Button);
+    _verLayout->addWidget(_RBTreeButton);
+    _verLayout->addWidget(_AVLTreeButton);
     _horLayout->addWidget(_BFSButton);
     _horLayout->addWidget(_DFSButton);
 
@@ -95,8 +90,8 @@ void MainMenu::makeMainMenu(MainWindow* mainWindow)
     _QuitButton->setGeometry((int)MainMenuProps::QuitButtonX, (int)MainMenuProps::QuitButtonY, (int)MainMenuProps::QuitButtonW, (int)MainMenuProps::QuitButtonH);
 
     // Make connects
-    connect(_Tree1Button, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::Tree1));
-    connect(_Tree2Button, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::Tree2));
+    connect(_RBTreeButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::RBTree));
+    connect(_AVLTreeButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::AVLTree));
     connect(_BFSButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::BFS));
     connect(_DFSButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::switchMenu, mainWindow, Menus::DFS));
     connect(_QuitButton, &QPushButton::clicked, mainWindow, std::bind(&MainWindow::showQuitWindow, mainWindow));

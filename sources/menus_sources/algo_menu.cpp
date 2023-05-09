@@ -12,8 +12,8 @@ AlgoMenu::AlgoMenu(bool isBFS, MainWindow* mainWindow, QWidget* parent) :
     // Init class members
     init();
 
-    // Make BFSMenu
-    makeBFSMenu(mainWindow);
+    // Make Algo Menu
+    makeAlgoMenu(mainWindow);
 }
 
 AlgoMenu::~AlgoMenu() {}
@@ -27,7 +27,7 @@ void AlgoMenu::init()
     _graphSettingsText = new QLabel(_settingsWidget);
     _vertexText = new QLabel(_settingsWidget);
     _verticesComboBox = new QComboBox(_settingsWidget);
-    _startVertex = (int)BFSVertices::A;
+    _startVertex = (int)AlgoVertices::X;
 
     _widgetForSizeLayout = new QWidget(_settingsWidget);
     _sizeVerLayout = new QVBoxLayout(_widgetForSizeLayout);
@@ -35,6 +35,7 @@ void AlgoMenu::init()
     _smallRadioButton = new QRadioButton();
     _largeRadioButton = new QRadioButton();
     _graphPicture = new QLabel(this);
+    _isSmallGraph = true;
 
     _widgetForDirectLayout = new QWidget(_settingsWidget);
     _directVerLayout = new QVBoxLayout(_widgetForDirectLayout);
@@ -99,31 +100,24 @@ void AlgoMenu::init()
     // Animation player
     _videoPlayer = new QMediaPlayer(this);
     _videoWidget = new QVideoWidget(this);
+    _videosPrefix = "bfs_";
+    _videosPostfix = "_vertex";
+    _videosExtension = ".mp4";
 }
 
 // Public util functions
 void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
 {
+    // Vertex combobox
+    _verticesComboBox->setCurrentIndex(0);
+    _startVertex = 0;
+
     // Size Radio buttons
     _smallRadioButton->setChecked("true");
+    sizeButtonGroupPressed(0);
 
     // Direct Radio buttons
     _undirectedRadioButton->setChecked(true);
-
-    // Speed Slider Number Text
-    _sliderNumberText->setText("1x");
-
-    // Minutes slider
-    _speedSlider->setValue(2);
-
-    // Play button
-    _playButton->setPixmap(QPixmap(ImagesPaths::PlayButtonImage));
-
-    // Stop button
-    _stopButton->setEnabled(false);
-
-    // Compare with menu
-    _compareWithMenu->clear();
 
     _isBFS = isBFS;
     if (isBFS)
@@ -146,6 +140,10 @@ void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
         _compareWithMenu->addAction(_compareWithDijkstra);
         _compareWithMenu->addAction(_compareWithBidirectional);
         _compareWithMenu->addAction(_compareWithAll);
+
+        // Videos widget
+        setVideoToPlayer(VideosPaths::SmallGraphBFSPath);
+        _videosPrefix = "bfs_";
     }
     else
     {
@@ -167,6 +165,10 @@ void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
         _compareWithMenu->addAction(_compareWithDijkstra);
         _compareWithMenu->addAction(_compareWithBidirectional);
         _compareWithMenu->addAction(_compareWithAll);
+
+        // Videos widget
+        setVideoToPlayer(VideosPaths::SmallGraphDFSPath);
+        _videosPrefix = "dfs_";
     }
 }
 
@@ -305,7 +307,27 @@ void AlgoMenu::stopButtonClicked()
 
 void AlgoMenu::verticesComboBoxIndexChanged(int index)
 {
+    stopButtonClicked();
+    speedSliderValueChanged(2);
     _startVertex = getVertexByIndex(index);
+
+    QString path;
+    if (_isSmallGraph == true)
+    {
+        if (_isBFS)
+            path = VideosPaths::SmallGraphBFSPath;
+        else
+            path = VideosPaths::SmallGraphDFSPath;
+    }
+    else
+    {
+        if (_isBFS)
+            path = VideosPaths::LargeGraphBFSPath;
+        else
+            path = VideosPaths::LargeGraphDFSPath;
+    }
+
+    setVideoToPlayer(path);
 }
 
 void AlgoMenu::sizeButtonGroupPressed(int id)
@@ -315,27 +337,43 @@ void AlgoMenu::sizeButtonGroupPressed(int id)
 
     if (id == 0) // small graph choosed
     {
-        _graphPicture->setPixmap(QPixmap(ImagesPaths::SmallGraphImage));
-        _videoPlayer->setSource(QUrl(VideosPaths::BFSVideosPath + "video1.mp4"));
-        _videoWidget->setGeometry(302, 80, 628, 460);
-        _graphPicture->setGeometry(302, 80, 628, 460);
+        _isSmallGraph = true;
+
+        if (_isBFS)
+        {
+            setVideoToPlayer(VideosPaths::SmallGraphBFSPath);
+            _graphPicture->setPixmap(QPixmap(ImagesPaths::BFSSmallGraphImage));
+        }
+        else
+        {
+            setVideoToPlayer(VideosPaths::SmallGraphDFSPath);
+            _graphPicture->setPixmap(QPixmap(ImagesPaths::DFSSmallGraphImage));
+        }
     }
     else // large graph choosed
     {
-        _graphPicture->setPixmap(QPixmap(ImagesPaths::LargeGraphImage));
-        _videoPlayer->setSource(QUrl(VideosPaths::BFSVideosPath + "video.mp4"));
-        _videoWidget->setGeometry(302, 80, 612, 490);
-        _graphPicture->setGeometry(302, 80, 612, 490);
+        _isSmallGraph = false;
+
+        if (_isBFS)
+        {
+            setVideoToPlayer(VideosPaths::LargeGraphBFSPath);
+            _graphPicture->setPixmap(QPixmap(ImagesPaths::BFSLargeGraphImage));
+        }
+        else
+        {
+            setVideoToPlayer(VideosPaths::LargeGraphDFSPath);
+            _graphPicture->setPixmap(QPixmap(ImagesPaths::DFSLargeGraphImage));
+        }
     }
 }
 
 // Private util functions
-void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
+void AlgoMenu::makeAlgoMenu(MainWindow* mainWindow)
 {
     // Settings Widget
-    _settingsWidget->setObjectName("SettingsWidget");
+    _settingsWidget->setObjectName("SettingsWidgetInAlgo");
     _settingsWidget->setGeometry((int)AlgoMenuProps::settingsWidgetX, (int)AlgoMenuProps::settingsWidgetY, (int)AlgoMenuProps::settingsWidgetW, (int)AlgoMenuProps::settingsWidgetH);
-    _settingsWidget->setStyleSheet("#SettingsWidget { background-color: #f7f6f5; border: 1px solid #d2d2d2; border-radius: 4px; }");
+    _settingsWidget->setStyleSheet("#SettingsWidgetInAlgo { background-color: #f7f6f5; border: 1px solid #d2d2d2; border-radius: 4px; }");
 
     // Settings text
     _graphSettingsText->setText("Choose graph settings");
@@ -352,11 +390,14 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     // Vertices ComboBox
     _verticesComboBox->setGeometry((int)AlgoMenuProps::VerticesComboBoxX, (int)AlgoMenuProps::VerticesComboBoxY, (int)AlgoMenuProps::VerticesComboBoxW, (int)AlgoMenuProps::VerticesComboBoxH);
     ::setStyleSheet(StylesPaths::ComboBoxStyle, _verticesComboBox);
-    _verticesComboBox->addItem(QString::number((int)BFSVertices::A));
-    _verticesComboBox->addItem(QString::number((int)BFSVertices::B));
-    _verticesComboBox->addItem(QString::number((int)BFSVertices::C));
-    _verticesComboBox->addItem(QString::number((int)BFSVertices::D));
-    _verticesComboBox->addItem(QString::number((int)BFSVertices::E));
+    _verticesComboBox->addItem(QString::number((int)AlgoVertices::X));
+    _verticesComboBox->addItem(QString::number((int)AlgoVertices::A));
+    _verticesComboBox->addItem(QString::number((int)AlgoVertices::B));
+    _verticesComboBox->addItem(QString::number((int)AlgoVertices::C));
+    _verticesComboBox->addItem(QString::number((int)AlgoVertices::D));
+    _verticesComboBox->addItem(QString::number((int)AlgoVertices::E));
+    _verticesComboBox->addItem(QString::number((int)AlgoVertices::F));
+    _verticesComboBox->addItem(QString::number((int)AlgoVertices::G));
     _verticesComboBox->setCurrentIndex(0);
     _verticesComboBox->setCursor(Qt::PointingHandCursor);
     connect(_verticesComboBox, &QComboBox::currentIndexChanged, this, &AlgoMenu::verticesComboBoxIndexChanged);
@@ -377,8 +418,8 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     connect(_sizeButtonGroup, &QButtonGroup::idPressed, this, &AlgoMenu::sizeButtonGroupPressed);
 
     // Graph picture
-    _graphPicture->setPixmap(QPixmap(ImagesPaths::SmallGraphImage));
-    _graphPicture->move(302, 80);
+    _graphPicture->setPixmap(QPixmap(ImagesPaths::BFSSmallGraphImage));
+    _graphPicture->move((int)AlgoMenuProps::VideoWidgetX, (int)AlgoMenuProps::VideoWidgetY);
 
     // Direct Radio buttons
     _directedRadioButton->setText("Directed Graph");
@@ -544,9 +585,9 @@ void AlgoMenu::makeBFSMenu(MainWindow* mainWindow)
     connect(_stopButton, &ClickableLabel::clickedLeftButton, this, &AlgoMenu::stopButtonClicked);
 
     // Animation player
-    _videoPlayer->setSource(QUrl(VideosPaths::BFSVideosPath + "video1.mp4"));
+    setVideoToPlayer(VideosPaths::SmallGraphBFSPath);
     _videoPlayer->setVideoOutput(_videoWidget);
-    _videoWidget->setGeometry(302, 80, 628, 460);
+    _videoWidget->setGeometry((int)AlgoMenuProps::VideoWidgetX, (int)AlgoMenuProps::VideoWidgetY, (int)AlgoMenuProps::VideoWidgetW, (int)AlgoMenuProps::VideoWidgetH);
     _videoWidget->hide();
     _videoPlayer->stop();
 }
@@ -591,29 +632,25 @@ int AlgoMenu::getVertexByIndex(int index)
     switch (index)
     {
     default:
-        if (_isBFS)
-            return (int)BFSVertices::A;
-        else
-            return (int)DFSVertices::A;
+        return (int)AlgoVertices::X;
     case 1:
-        if (_isBFS)
-            return (int)BFSVertices::B;
-        else
-            return (int)DFSVertices::B;
+        return (int)AlgoVertices::A;
     case 2:
-        if (_isBFS)
-            return (int)BFSVertices::C;
-        else
-            return (int)DFSVertices::C;
+        return (int)AlgoVertices::B;
     case 3:
-        if (_isBFS)
-            return (int)BFSVertices::D;
-        else
-            return (int)DFSVertices::D;
+        return (int)AlgoVertices::C;
     case 4:
-        if (_isBFS)
-            return (int)BFSVertices::E;
-        else
-            return (int)DFSVertices::E;
+        return (int)AlgoVertices::D;
+    case 5:
+        return (int)AlgoVertices::E;
+    case 6:
+        return (int)AlgoVertices::F;
+    case 7:
+        return (int)AlgoVertices::G;
     }
+}
+
+void AlgoMenu::setVideoToPlayer(QString path)
+{
+    _videoPlayer->setSource(QUrl(path + _videosPrefix + QString::number(_startVertex) + _videosPostfix + _videosExtension));
 }

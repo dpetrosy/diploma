@@ -67,6 +67,7 @@ private:
     // Menus Widgets
     MainMenu*       _MainMenuWidget;
     AlgoMenu*       _AlgoMenuWidget;
+    TreeMenu*       _TreeMenuWidget;
 
     // Menus StackedWidget
     QStackedWidget* _MenusStackedWidget;

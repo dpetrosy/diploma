@@ -1,0 +1,15 @@
+
+
+    An AVL tree is a self-balancing binary
+ search tree where the heights of the left
+ and right subtrees of any node differ by at
+ most one. This ensures that the tree rem-
+ ains balanced and efficient for operations
+ such as insertion, deletion, and search. The
+ name AVL comes from the initials of the
+ inventors Adelson-Velsky and Landis. AVL
+ trees are commonly used in computer sci-
+ ence for efficient storage and retrieval of
+ data, especially in applications that require
+ frequent updates and queries. Time comp-
+ lexity of AVL tree operations is O(log n).

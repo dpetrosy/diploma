@@ -25,12 +25,10 @@
         <file>texts/comp_bfs.txt</file>
         <file>texts/comp_dfs.txt</file>
         <file>styles/comp_text.txt</file>
-        <file>videos/bfs_videos/video.mp4</file>
         <file>images/buttons/pause_button.png</file>
         <file>images/buttons/play_button.png</file>
         <file>images/buttons/stop_button.png</file>
         <file>images/graphs/large_graph.png</file>
-        <file>videos/bfs_videos/video1.mp4</file>
         <file>images/graphs/small_graph.png</file>
         <file>images/analysis/perf_bfs1.png</file>
         <file>images/analysis/perf_bfs2.png</file>
@@ -45,5 +43,24 @@
         <file>images/analysis/compare_with/dfs_with_bfs.png</file>
         <file>images/analysis/compare_with/dfs_with_bidirectional.png</file>
         <file>images/analysis/compare_with/dfs_with_dijkstra.png</file>
+        <file>texts/about_rb_tree.txt</file>
+        <file>texts/similar_trees_text.txt</file>
+        <file>texts/comp_avl_tree.txt</file>
+        <file>texts/comp_rb_tree.txt</file>
+        <file>images/trees/large_tree.png</file>
+        <file>images/trees/small_tree.png</file>
+        <file>videos/rb_tree_videos/video2.mp4</file>
+        <file>videos/rb_tree_videos/video3.mp4</file>
+        <file>images/analysis/perf_rb_tree.png</file>
+        <file>videos/algo_videos/small_graph/bfs/bfs_1_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/bfs/bfs_2_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/bfs/bfs_4_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/bfs/bfs_5_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/bfs/bfs_7_vertex.mp4</file>
+        <file>images/graphs/bfs_small_graph.png</file>
+        <file>videos/algo_videos/small_graph/bfs/bfs_0_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/bfs/bfs_3_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/bfs/bfs_6_vertex.mp4</file>
+        <file>texts/about_avl_tree.txt</file>
     </qresource>
 </RCC>

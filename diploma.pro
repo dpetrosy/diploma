@@ -16,6 +16,7 @@ SOURCES += \
     sources/main.cpp \
     sources/mainwindow.cpp \
     sources/menus_sources/algo_menu.cpp \
+    sources/menus_sources/tree_menu.cpp \
     sources/namespaces.cpp \
     sources/utils.cpp \
     sources/menus_sources/mainmenu.cpp \
@@ -27,6 +28,7 @@ HEADERS += \
     headers/mainmenu.hpp \
     headers/mainwindow.hpp \
     headers/menus_headers/algo_menu.hpp \
+    headers/menus_headers/tree_menu.hpp \
     headers/predefined_classes.hpp \
     headers/utils.hpp \
     headers/menus_headers/mainmenu.hpp \

@@ -1,0 +1,12 @@
+
+
+   1. Red-Black Tree
+   2. AVL Tree
+   3. B-Tree
+   4. Splay Tree
+   5. 2-3 Tree
+   6. Treap Tree
+   7. Fibonacci Tree
+   8. Weight-Balanced Tree
+   9. Left-Leaning RB Tree
+   10. Binary Search Tree

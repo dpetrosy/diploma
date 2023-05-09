@@ -2,6 +2,7 @@
 #include "mainmenu.hpp"
 #include "helpers.hpp"
 #include "algo_menu.hpp"
+#include "tree_menu.hpp"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -46,6 +47,7 @@ void MainWindow::init()
     // Menus Widgets
     _MainMenuWidget = new MainMenu(this);
     _AlgoMenuWidget = new AlgoMenu(true, this, this);
+    _TreeMenuWidget = new TreeMenu(true, this, this);
 
     // Menus StackedWidget
     _MenusStackedWidget = new QStackedWidget();
@@ -68,6 +70,16 @@ void MainWindow::switchMenu(Menus toMenu)
             _AlgoMenuWidget->prepareMenuBeforeSwitch(true);
         else
             _AlgoMenuWidget->prepareMenuBeforeSwitch(false);
+    }
+    else // RB and AVL trees
+    {
+        _MenusStackedWidget->setCurrentIndex((int)Menus::TreeMenu);
+        setBackgroundImage(ImagesPaths::MenusBKGImage);
+
+        if (toMenu == Menus::RBTree)
+            _TreeMenuWidget->prepareMenuBeforeSwitch(true);
+        else
+            _TreeMenuWidget->prepareMenuBeforeSwitch(false);
     }
 }
 
@@ -100,5 +112,5 @@ QStackedWidget* MainWindow::getStackedWidget()
 // Private util functions
 void MainWindow::makeStackedWidget()
 {
-    makeStackedWidget(_MenusStackedWidget, _MainMenuWidget, _AlgoMenuWidget);
+    makeStackedWidget(_MenusStackedWidget, _MainMenuWidget, _AlgoMenuWidget, _TreeMenuWidget);
 }

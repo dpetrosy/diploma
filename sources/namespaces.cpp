@@ -31,10 +31,17 @@ namespace ImagesPaths
     QString PlayButtonImage = ButtonsDirPath + "play_button.png";
     QString StopButtonImage = ButtonsDirPath + "stop_button.png";
 
+    // Trees
+    QString TreesDirPath = ImagesDirPath + "trees/";
+    QString SmallTreeImage = TreesDirPath + "small_tree.png";
+    QString LargeTreeImage = TreesDirPath + "large_tree.png";
+
     // Graphs
     QString GraphsDirPath = ImagesDirPath + "graphs/";
-    QString SmallGraphImage = GraphsDirPath + "small_graph.png";
-    QString LargeGraphImage = GraphsDirPath + "large_graph.png";
+    QString BFSSmallGraphImage = GraphsDirPath + "bfs_small_graph.png";
+    QString BFSLargeGraphImage = GraphsDirPath + "bfs_large_graph.png";
+    QString DFSSmallGraphImage = GraphsDirPath + "dfs_small_graph.png";
+    QString DFSLargeGraphImage = GraphsDirPath + "dfs_large_graph.png";
 
     // Comapre with
     QString AnalysisDirPath = ImagesDirPath + "analysis/";
@@ -52,6 +59,8 @@ namespace ImagesPaths
     QString DFSWithAll = CompareWithDirPath + "bfs_with_all.png";
 
     // Performance analysis
+    QString PerfRBTreeImage = AnalysisDirPath + "perf_rb_tree.png";
+    QString PerfAVlTreeImage = AnalysisDirPath + "perf_avl_tree.png";
     QString PerfBFSImage1 = AnalysisDirPath + "perf_bfs1.png";
     QString PerfBFSImage2 = AnalysisDirPath + "perf_bfs2.png";
     QString PerfDFSImage1 = AnalysisDirPath + "perf_dfs1.png";
@@ -63,15 +72,31 @@ namespace TextsPaths
     QString TextsPath = ":/texts/";
     QString BFSPseudocodePath = TextsPath + "bfs_pseudocode.txt";
     QString DFSPseudocodePath = TextsPath + "dfs_pseudocode.txt";
+    QString AboutRbTreePath = TextsPath + "about_rb_tree.txt";
+    QString AboutAVLTreePath = TextsPath + "about_avl_tree.txt";
     QString AboutBFSPath = TextsPath + "about_bfs.txt";
     QString AboutDFSPath = TextsPath + "about_dfs.txt";
+    QString SimilarTreesPath = TextsPath + "similar_trees_text.txt";
     QString SimilarAlgosPath = TextsPath + "similar_algos_text.txt";
+    QString CompRBTreePath = TextsPath + "comp_rb_tree.txt";
+    QString CompAVLTreePath = TextsPath + "comp_avl_tree.txt";
     QString CompBFSPath = TextsPath + "comp_bfs.txt";
     QString CompDFSPath = TextsPath + "comp_dfs.txt";
 }
 
 namespace VideosPaths
 {
+    QString RBTreeVideosPath = VideosPath + "rb_tree_videos/";
+
+
+
+
     QString VideosPath = "qrc:/videos/";
-    QString BFSVideosPath = VideosPath + "bfs_videos/";
+    QString AlgoVideosPath = VideosPath + "algo_videos/";
+    QString SmallGraphPath = AlgoVideosPath + "small_graph/";
+    QString LargeGraphPath = AlgoVideosPath + "large_graph/";
+    QString SmallGraphBFSPath = SmallGraphPath + "bfs/";
+    QString SmallGraphDFSPath = SmallGraphPath + "dfs/";
+    QString LargeGraphBFSPath = LargeGraphPath + "bfs/";
+    QString LargeGraphDFSPath = LargeGraphPath + "dfs/";
 }

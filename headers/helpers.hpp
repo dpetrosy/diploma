@@ -11,12 +11,13 @@ enum class MainWindowProps
 
 enum class Menus : int
 {
-    MainMenu = 0,
-    BFS = 1,
-    DFS = 2,
-    Tree1 = 3,
-    Tree2 = 4,
+    MainMenu,
+    RBTree,
+    AVLTree,
+    BFS,
+    DFS,
     AlgoMenu = 1,
+    TreeMenu = 2,
 };
 
 namespace StylesPaths
@@ -42,9 +43,14 @@ namespace TextsPaths
     extern QString TextsPath;
     extern QString BFSPseudocodePath;
     extern QString DFSPseudocodePath;
+    extern QString AboutRbTreePath;
+    extern QString AboutAVLTreePath;
     extern QString AboutBFSPath;
     extern QString AboutDFSPath;
+    extern QString SimilarTreesPath;
     extern QString SimilarAlgosPath;
+    extern QString CompRBTreePath;
+    extern QString CompAVLTreePath;
     extern QString CompBFSPath;
     extern QString CompDFSPath;
 }
@@ -62,10 +68,17 @@ namespace ImagesPaths
     extern QString PlayButtonImage;
     extern QString StopButtonImage;
 
+    // Trees
+    extern QString TreesDirPath;
+    extern QString SmallTreeImage;
+    extern QString LargeTreeImage;
+
     // Graphs
     extern QString GraphsDirPath;
-    extern QString SmallGraphImage;
-    extern QString LargeGraphImage;
+    extern QString BFSSmallGraphImage;
+    extern QString BFSLargeGraphImage;
+    extern QString DFSSmallGraphImage;
+    extern QString DFSLargeGraphImage;
 
     // Comapre with
     extern QString AnalysisDirPath;
@@ -83,6 +96,8 @@ namespace ImagesPaths
     extern QString DFSWithAll;
 
     // Performance analysis
+    extern QString PerfRBTreeImage;
+    extern QString PerfAVlTreeImage;
     extern QString PerfBFSImage1;
     extern QString PerfBFSImage2;
     extern QString PerfDFSImage1;
@@ -92,7 +107,18 @@ namespace ImagesPaths
 namespace VideosPaths
 {
     extern QString VideosPath;
-    extern QString BFSVideosPath;
+    extern QString AlgoVideosPath;
+    extern QString SmallGraphPath;
+    extern QString LargeGraphPath;
+    extern QString SmallGraphBFSPath;
+    extern QString SmallGraphDFSPath;
+    extern QString LargeGraphDFSPath;
+    extern QString LargeGraphBFSPath;
+
+
+
+
+    extern QString RBTreeVideosPath;
 }
 
 enum class MainMenuProps
@@ -210,6 +236,92 @@ enum class AlgoMenuProps
     PerfImage1Y = 18,
     PerfImage2X = PerfImage1X + 482 + 27,
     PerfImage2Y = PerfImage1Y,
+
+    // Video widget props
+    VideoWidgetX = 293,
+    VideoWidgetY = 80,
+    VideoWidgetW = 639,
+    VideoWidgetH = 462,
+};
+
+enum class TreeMenuProps
+{
+    // Graph settings props
+    SettingsWidgetW = 240,
+    SettingsWidgetH = 240,
+    SettingsWidgetX = 22,
+    SettingsWidgetY = (int)MainWindowProps::windowSizeH - SettingsWidgetH - 22,
+
+    SettingsTextX = 43,
+    SettingsTextY = 10,
+
+    OperationsTextX = 17,
+    OperationsTextY = SettingsTextY + 35,
+
+    OperationsWidgetX = 7,
+    OperationsWidgetY = OperationsTextY + 15,
+    OperationsWidgetW = 83,
+    OperationsWidgetH = 100,
+
+    SizeWidgetX = OperationsWidgetX,
+    SizeWidgetY = OperationsWidgetY + OperationsWidgetH + 8,
+    SizeWidgetW = 111,
+    SizeWidgetH = 67,
+
+    // Animation speed props
+    SliderTextX = 22 + SettingsWidgetW + 222,
+    SliderTextY = (int)MainWindowProps::windowSizeH - 75,
+    SliderTextNumberX = SliderTextX + 139,
+    SliderTextNumberY = SliderTextY + 2,
+    SliderX = SliderTextX - 55,
+    SliderY = SliderTextY + 28,
+    SliderW = 270,
+    SliderH = 25,
+
+    // Animation controls props
+    PlayButtonX = SliderX + SliderW + 15,
+    PlayButtonY = SliderY,
+    StopButtonX = PlayButtonX + 33,
+    StopButtonY = PlayButtonY,
+
+    // About text props
+    AboutTextW = SettingsWidgetW,
+    AboutTextH = 248,
+    AboutTextX = SettingsWidgetX,
+    AboutTextY = (int)MainWindowProps::windowSizeH - SettingsWidgetH - AboutTextH - 44,
+    AboutTitleTextX = AboutTextX + 65,
+    AboutTitleTextY = AboutTextY + 4,
+
+    // Similar text props
+    SimilarTextW = 288,
+    SimilarTextH = 296,
+    SimilarTextX = (int)MainWindowProps::windowSizeW - SimilarTextW - 22,
+    SimilarTextY = (int)MainWindowProps::windowSizeH - SimilarTextH - 22,
+    SimilarTitleTextX = SimilarTextX + 82,
+    SimilarTitleTextY = SimilarTextY + 10,
+
+    // Complexities text props
+    CompTextW = SimilarTextW,
+    CompTextH = 275,
+    CompTextX = (int)MainWindowProps::windowSizeW - CompTextW - 22,
+    CompTextY = (int)MainWindowProps::windowSizeH - SimilarTextH - CompTextH - 42,
+    CompTitleTextX = CompTextX + 79,
+    CompTitleTextY = CompTextY + 8,
+
+    // Performance analysis
+    PerfWidgetW = 1152,
+    PerfWidgetH = 430,
+    PerfImageX = 18,
+    PerfImageY = 18,
+
+
+
+
+//    // Compare with
+//    CompareWidgetW = 1000,
+//    CompareWidgetH = 500,
+//    CompareImageX = 25,
+//    CompareImageY = 25,
 };
 
 enum class SizeRadioButtons
@@ -224,22 +336,23 @@ enum class DirectRadioButtons
     DirectedButton,
 };
 
-enum class BFSVertices
+enum class OperationsRadioButtons
 {
-    A = 1,
-    B = 2,
-    C = 3,
-    D = 4,
-    E = 5,
+    FindButton,
+    InsertButton,
+    DeleteButton,
 };
 
-enum class DFSVertices
+enum class AlgoVertices
 {
+    X = 0,
     A = 1,
     B = 2,
     C = 3,
     D = 4,
     E = 5,
+    F = 6,
+    G = 7,
 };
 
 enum class CompareWithAlgos
