@@ -33,8 +33,10 @@ namespace ImagesPaths
 
     // Trees
     QString TreesDirPath = ImagesDirPath + "trees/";
-    QString SmallTreeImage = TreesDirPath + "small_tree.png";
-    QString LargeTreeImage = TreesDirPath + "large_tree.png";
+    QString SmallRBTreeImage = TreesDirPath + "rb_small_tree.png";
+    QString LargeRBTreeImage = TreesDirPath + "rb_large_tree.png";
+    QString SmallAVLTreeImage = TreesDirPath + "avl_small_tree.png";
+    QString LargeAVLTreeImage = TreesDirPath + "avl_large_tree.png";
 
     // Graphs
     QString GraphsDirPath = ImagesDirPath + "graphs/";
@@ -86,12 +88,9 @@ namespace TextsPaths
 
 namespace VideosPaths
 {
-    QString RBTreeVideosPath = VideosPath + "rb_tree_videos/";
-
-
-
-
     QString VideosPath = "qrc:/videos/";
+
+    // Trees videos
     QString AlgoVideosPath = VideosPath + "algo_videos/";
     QString SmallGraphPath = AlgoVideosPath + "small_graph/";
     QString LargeGraphPath = AlgoVideosPath + "large_graph/";
@@ -99,4 +98,13 @@ namespace VideosPaths
     QString SmallGraphDFSPath = SmallGraphPath + "dfs/";
     QString LargeGraphBFSPath = LargeGraphPath + "bfs/";
     QString LargeGraphDFSPath = LargeGraphPath + "dfs/";
+
+    // Trees videos
+    QString TreeVideosPath = VideosPath + "tree_videos/";
+    QString SmallTreePath = TreeVideosPath + "small_tree/";
+    QString LargeTreePath = TreeVideosPath + "large_tree/";
+    QString SmallRBTreePath = SmallTreePath + "rb_tree/";
+    QString SmallAVLTreePath = SmallTreePath + "avl_tree/";
+    QString LargeRBTreePath = LargeTreePath + "rb_tree/";
+    QString LargeAVLTreePath = LargeTreePath + "avl_tree";
 }

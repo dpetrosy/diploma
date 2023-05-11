@@ -49,6 +49,8 @@ private:
     double getSliderValueByPos(int x);
     int getSliderPosByValue(double x);
     int getVertexByIndex(int index);
+    QString getOperStrByValue(TreesOperations operation);
+    void setVideoToPlayer(QString path, TreesOperations operation);
 
 private:
     bool _isRBTree;
@@ -65,6 +67,7 @@ private:
     QRadioButton*   _findRadioButton;
     QRadioButton*   _insertRadioButton;
     QRadioButton*   _deleteRadioButton;
+    TreesOperations _currentOperation;
 
     // Size Radio Buttons
     QWidget*        _widgetForSizeLayout;
@@ -73,6 +76,7 @@ private:
     QRadioButton*   _smallRadioButton;
     QRadioButton*   _largeRadioButton;
     QLabel*         _treePicture;
+    bool            _isSmallTree;
 
     // Animation speed contrlos
     QLabel*         _sliderText;
@@ -126,6 +130,8 @@ private:
     // Animation player
     QMediaPlayer*   _videoPlayer;
     QVideoWidget*   _videoWidget;
+    QString         _videosPrefix;
+    QString         _videosExtension;
 };
 
 #endif // TREE_MENU_HPP

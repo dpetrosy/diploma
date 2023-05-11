@@ -29,7 +29,6 @@
         <file>images/buttons/play_button.png</file>
         <file>images/buttons/stop_button.png</file>
         <file>images/graphs/large_graph.png</file>
-        <file>images/graphs/small_graph.png</file>
         <file>images/analysis/perf_bfs1.png</file>
         <file>images/analysis/perf_bfs2.png</file>
         <file>images/analysis/perf_dfs1.png</file>
@@ -49,8 +48,6 @@
         <file>texts/comp_rb_tree.txt</file>
         <file>images/trees/large_tree.png</file>
         <file>images/trees/small_tree.png</file>
-        <file>videos/rb_tree_videos/video2.mp4</file>
-        <file>videos/rb_tree_videos/video3.mp4</file>
         <file>images/analysis/perf_rb_tree.png</file>
         <file>videos/algo_videos/small_graph/bfs/bfs_1_vertex.mp4</file>
         <file>videos/algo_videos/small_graph/bfs/bfs_2_vertex.mp4</file>
@@ -62,5 +59,33 @@
         <file>videos/algo_videos/small_graph/bfs/bfs_3_vertex.mp4</file>
         <file>videos/algo_videos/small_graph/bfs/bfs_6_vertex.mp4</file>
         <file>texts/about_avl_tree.txt</file>
+        <file>videos/algo_videos/small_graph/dfs/dfs_0_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/dfs/dfs_1_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/dfs/dfs_2_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/dfs/dfs_3_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/dfs/dfs_4_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/dfs/dfs_5_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/dfs/dfs_6_vertex.mp4</file>
+        <file>videos/algo_videos/small_graph/dfs/dfs_7_vertex.mp4</file>
+        <file>images/graphs/dfs_small_graph.png</file>
+        <file>videos/algo_videos/large_graph/bfs/bfs_0_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/bfs/bfs_1_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/bfs/bfs_2_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/bfs/bfs_3_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/bfs/bfs_4_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/bfs/bfs_5_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/bfs/bfs_6_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/bfs/bfs_7_vertex.mp4</file>
+        <file>images/graphs/bfs_large_graph.png</file>
+        <file>images/graphs/dfs_large_graph.png</file>
+        <file>videos/algo_videos/large_graph/dfs/dfs_0_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/dfs/dfs_1_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/dfs/dfs_2_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/dfs/dfs_3_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/dfs/dfs_4_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/dfs/dfs_5_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/dfs/dfs_6_vertex.mp4</file>
+        <file>videos/algo_videos/large_graph/dfs/dfs_7_vertex.mp4</file>
+        <file>videos/tree_videos/small_tree/rb_tree/video.mp4</file>
     </qresource>
 </RCC>

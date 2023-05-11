@@ -70,8 +70,10 @@ namespace ImagesPaths
 
     // Trees
     extern QString TreesDirPath;
-    extern QString SmallTreeImage;
-    extern QString LargeTreeImage;
+    extern QString SmallRBTreeImage;
+    extern QString LargeRBTreeImage;
+    extern QString SmallAVLTreeImage;
+    extern QString LargeAVLTreeImage;
 
     // Graphs
     extern QString GraphsDirPath;
@@ -107,6 +109,8 @@ namespace ImagesPaths
 namespace VideosPaths
 {
     extern QString VideosPath;
+
+    // Algos videos
     extern QString AlgoVideosPath;
     extern QString SmallGraphPath;
     extern QString LargeGraphPath;
@@ -115,10 +119,14 @@ namespace VideosPaths
     extern QString LargeGraphDFSPath;
     extern QString LargeGraphBFSPath;
 
-
-
-
-    extern QString RBTreeVideosPath;
+    // Trees videos
+    extern QString TreeVideosPath;
+    extern QString SmallTreePath;
+    extern QString LargeTreePath;
+    extern QString SmallRBTreePath;
+    extern QString SmallAVLTreePath;
+    extern QString LargeRBTreePath;
+    extern QString LargeAVLTreePath;
 }
 
 enum class MainMenuProps
@@ -240,8 +248,10 @@ enum class AlgoMenuProps
     // Video widget props
     VideoWidgetX = 293,
     VideoWidgetY = 80,
-    VideoWidgetW = 639,
-    VideoWidgetH = 462,
+    SmallVideoWidgetW = 639,
+    SmallVideoWidgetH = 462,
+    LargeVideoWidgetW = 610,
+    LargeVideoWidgetH = 495
 };
 
 enum class TreeMenuProps
@@ -363,6 +373,13 @@ enum class CompareWithAlgos
     Dijkstra,
     Bidirectional,
     All,
+};
+
+enum class TreesOperations
+{
+    Find,
+    Insert,
+    Delete,
 };
 
 #endif // HELPERS_HPP

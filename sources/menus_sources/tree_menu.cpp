@@ -32,6 +32,7 @@ void TreeMenu::init()
     _findRadioButton = new QRadioButton();
     _insertRadioButton = new QRadioButton();
     _deleteRadioButton = new QRadioButton();
+    _currentOperation = TreesOperations::Find;
 
     _widgetForSizeLayout = new QWidget(_settingsWidget);
     _sizeVerLayout = new QVBoxLayout(_widgetForSizeLayout);
@@ -39,6 +40,7 @@ void TreeMenu::init()
     _smallRadioButton = new QRadioButton();
     _largeRadioButton = new QRadioButton();
     _treePicture = new QLabel(this);
+    _isSmallTree = true;
 
     // Animation speed contrlos
     _sliderText = new QLabel(this);
@@ -92,6 +94,8 @@ void TreeMenu::init()
     // Animation player
     _videoPlayer = new QMediaPlayer(this);
     _videoWidget = new QVideoWidget(this);
+    _videosPrefix = "rb_";
+    _videosExtension = ".mp4";
 }
 
 // Public util functions
@@ -99,21 +103,11 @@ void TreeMenu::prepareMenuBeforeSwitch(bool isRBTree)
 {
     // Size Radio buttons
     _smallRadioButton->setChecked("true");
+    sizeButtonGroupPressed(0);  // small tree
 
     // Direct Radio buttons
     _findRadioButton->setChecked(true);
-
-    // Speed Slider Number Text
-    _sliderNumberText->setText("1x");
-
-    // Minutes slider
-    _speedSlider->setValue(2);
-
-    // Play button
-    _playButton->setPixmap(QPixmap(ImagesPaths::PlayButtonImage));
-
-    // Stop button
-    _stopButton->setEnabled(false);
+    operationsButtonGroupPressed(0);  // find operation
 
     // Compare with menu
     //_compareWithMenu->clear();
@@ -136,6 +130,10 @@ void TreeMenu::prepareMenuBeforeSwitch(bool isRBTree)
 //        _compareWithMenu->addAction(_compareWithDijkstra);
 //        _compareWithMenu->addAction(_compareWithBidirectional);
 //        _compareWithMenu->addAction(_compareWithAll);
+
+        // Videos widget
+        //setVideoToPlayer(VideosPaths::SmallRBTreePath, TreesOperations::Find);
+        _videosPrefix = "rb_";
     }
     else
     {
@@ -154,74 +152,14 @@ void TreeMenu::prepareMenuBeforeSwitch(bool isRBTree)
 //        _compareWithMenu->addAction(_compareWithDijkstra);
 //        _compareWithMenu->addAction(_compareWithBidirectional);
 //        _compareWithMenu->addAction(_compareWithAll);
+
+        // Videos widget
+        //setVideoToPlayer(VideosPaths::SmallAVLTreePath, TreesOperations::Find);
+        _videosPrefix = "avl_";
     }
 }
 
 // Private slots
-//void TreeMenu::showCompareWith(CompareWithTrees tree)
-//{
-//    _compareWithWidget->show();
-//    _compareWithImage->setFixedWidth(1000);
-//    _compareWithImage->setFixedHeight(430);
-
-//    if (_isRBTree)
-//    {
-//        switch (algo)
-//        {
-//        default:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithDFS));
-//            _compareWithWidget->setFixedSize(810, 470);
-//            return;
-//        case CompareWithAlgos::Beam:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithBeam));
-//            _compareWithWidget->setFixedSize(843, 470);
-//            return;
-//        case CompareWithAlgos::Dijkstra:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithDijkstra));
-//            _compareWithWidget->setFixedSize(870, 470);
-//            return;
-//        case CompareWithAlgos::Bidirectional:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithBidirectional));
-//            _compareWithWidget->setFixedSize(810, 470);
-//            return;
-//        case CompareWithAlgos::All:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::BFSWithAll));
-//            _compareWithImage->setFixedWidth(1520);
-//            _compareWithImage->setFixedHeight(800);
-//            _compareWithWidget->setFixedSize(1560, 850);
-//            return;
-//        }
-//    }
-//    else
-//    {
-//        switch (algo)
-//        {
-//        default:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithBFS));
-//            _compareWithWidget->setFixedSize(825, 470);
-//            return;
-//        case CompareWithAlgos::Beam:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithBeam));
-//            _compareWithWidget->setFixedSize(1037, 463);
-//            return;
-//        case CompareWithAlgos::Dijkstra:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithDijkstra));
-//            _compareWithWidget->setFixedSize(1045, 463);
-//            return;
-//        case CompareWithAlgos::Bidirectional:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithBidirectional));
-//            _compareWithWidget->setFixedSize(1000, 463);
-//            return;
-//        case CompareWithAlgos::All:
-//            _compareWithImage->setPixmap(QPixmap(ImagesPaths::DFSWithAll));
-//            _compareWithImage->setFixedWidth(1520);
-//            _compareWithImage->setFixedHeight(800);
-//            _compareWithWidget->setFixedSize(1560, 850);
-//            return;
-//        }
-//    }
-//}
-
 void TreeMenu::showPerfAnalaysis()
 {
     if (_isRBTree)
@@ -312,17 +250,33 @@ void TreeMenu::sizeButtonGroupPressed(int id)
 
     if (id == 0) // small tree choosed
     {
-        _treePicture->setPixmap(QPixmap(ImagesPaths::SmallTreeImage));
-        _videoPlayer->setSource(QUrl(VideosPaths::RBTreeVideosPath + "video3.mp4"));
-        _videoWidget->setGeometry(302, 150, 628, 460);
-        _treePicture->setGeometry(302, 150, 628, 460);
+        _isSmallTree = true;
+
+        if (_isRBTree)
+        {
+            //setVideoToPlayer(VideosPaths::SmallGraphBFSPath, _currentOperation);
+            _treePicture->setPixmap(QPixmap(ImagesPaths::SmallRBTreeImage));
+        }
+        else
+        {
+            //setVideoToPlayer(VideosPaths::SmallGraphDFSPath, _currentOperation);
+            _treePicture->setPixmap(QPixmap(ImagesPaths::SmallAVLTreeImage));
+        }
     }
     else // large tree choosed
     {
-        _treePicture->setPixmap(QPixmap(ImagesPaths::LargeTreeImage));
-        _videoPlayer->setSource(QUrl(VideosPaths::RBTreeVideosPath + "video2.mp4"));
-        _videoWidget->setGeometry(302, 150, 612, 490);
-        _treePicture->setGeometry(302, 150, 612, 490);
+        _isSmallTree = false;
+
+        if (_isRBTree)
+        {
+            setVideoToPlayer(VideosPaths::LargeGraphBFSPath, _currentOperation);
+            _treePicture->setPixmap(QPixmap(ImagesPaths::LargeRBTreeImage));
+        }
+        else
+        {
+            setVideoToPlayer(VideosPaths::LargeGraphDFSPath, _currentOperation);
+            _treePicture->setPixmap(QPixmap(ImagesPaths::LargeAVLTreeImage));
+        }
     }
 }
 
@@ -488,8 +442,8 @@ void TreeMenu::makeTreeMenu(MainWindow* mainWindow)
     _menuBar->setFixedHeight(22);
     //
 
-    // Graph picture
-    _treePicture->setPixmap(QPixmap(ImagesPaths::SmallTreeImage));
+    // Tree picture
+    _treePicture->setPixmap(QPixmap(ImagesPaths::SmallRBTreeImage));
     _treePicture->move(302, 80);
 
 //    // Compare with
@@ -527,9 +481,9 @@ void TreeMenu::makeTreeMenu(MainWindow* mainWindow)
     connect(_stopButton, &ClickableLabel::clickedLeftButton, this, &TreeMenu::stopButtonClicked);
 
     // Animation player
-    _videoPlayer->setSource(QUrl(VideosPaths::RBTreeVideosPath + "video3.mp4"));
+    _videoPlayer->setSource(QUrl(VideosPaths::SmallRBTreePath + "video.mp4"));
     _videoPlayer->setVideoOutput(_videoWidget);
-    _videoWidget->setGeometry(302, 150, 610, 262);
+    _videoWidget->setGeometry(302, 150, 710, 240);
     _videoWidget->hide();
     _videoPlayer->stop();
 }
@@ -567,4 +521,23 @@ int TreeMenu::getSliderPosByValue(double x)
         return 4;
     else
         return 1;
+}
+
+QString TreeMenu::getOperStrByValue(TreesOperations operation)
+{
+    switch (operation)
+    {
+    default:
+        return "find";
+    case TreesOperations::Insert:
+        return "insert";
+    case TreesOperations::Delete:
+        return "delete";
+    }
+}
+
+void TreeMenu::setVideoToPlayer(QString path, TreesOperations operation)
+{
+    QString operStr = getOperStrByValue(operation);
+    _videoPlayer->setSource(QUrl(path + _videosPrefix + operStr + _videosExtension));
 }

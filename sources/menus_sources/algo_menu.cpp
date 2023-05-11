@@ -108,6 +108,8 @@ void AlgoMenu::init()
 // Public util functions
 void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
 {
+    _isBFS = isBFS;
+
     // Vertex combobox
     _verticesComboBox->setCurrentIndex(0);
     _startVertex = 0;
@@ -119,7 +121,6 @@ void AlgoMenu::prepareMenuBeforeSwitch(bool isBFS)
     // Direct Radio buttons
     _undirectedRadioButton->setChecked(true);
 
-    _isBFS = isBFS;
     if (isBFS)
     {
         // Pseudocode text
@@ -365,6 +366,8 @@ void AlgoMenu::sizeButtonGroupPressed(int id)
             _graphPicture->setPixmap(QPixmap(ImagesPaths::DFSLargeGraphImage));
         }
     }
+
+    setAnimationPlayerGeometry();
 }
 
 // Private util functions
@@ -419,7 +422,6 @@ void AlgoMenu::makeAlgoMenu(MainWindow* mainWindow)
 
     // Graph picture
     _graphPicture->setPixmap(QPixmap(ImagesPaths::BFSSmallGraphImage));
-    _graphPicture->move((int)AlgoMenuProps::VideoWidgetX, (int)AlgoMenuProps::VideoWidgetY);
 
     // Direct Radio buttons
     _directedRadioButton->setText("Directed Graph");
@@ -587,7 +589,7 @@ void AlgoMenu::makeAlgoMenu(MainWindow* mainWindow)
     // Animation player
     setVideoToPlayer(VideosPaths::SmallGraphBFSPath);
     _videoPlayer->setVideoOutput(_videoWidget);
-    _videoWidget->setGeometry((int)AlgoMenuProps::VideoWidgetX, (int)AlgoMenuProps::VideoWidgetY, (int)AlgoMenuProps::VideoWidgetW, (int)AlgoMenuProps::VideoWidgetH);
+    setAnimationPlayerGeometry();
     _videoWidget->hide();
     _videoPlayer->stop();
 }
@@ -653,4 +655,18 @@ int AlgoMenu::getVertexByIndex(int index)
 void AlgoMenu::setVideoToPlayer(QString path)
 {
     _videoPlayer->setSource(QUrl(path + _videosPrefix + QString::number(_startVertex) + _videosPostfix + _videosExtension));
+}
+
+void AlgoMenu::setAnimationPlayerGeometry()
+{
+    if (_isSmallGraph)
+    {
+        _videoWidget->setGeometry((int)AlgoMenuProps::VideoWidgetX, (int)AlgoMenuProps::VideoWidgetY + 3, (int)AlgoMenuProps::SmallVideoWidgetW, (int)AlgoMenuProps::SmallVideoWidgetH);
+        _graphPicture->setGeometry((int)AlgoMenuProps::VideoWidgetX, (int)AlgoMenuProps::VideoWidgetY, (int)AlgoMenuProps::SmallVideoWidgetW, (int)AlgoMenuProps::SmallVideoWidgetH);
+    }
+    else
+    {
+        _videoWidget->setGeometry((int)AlgoMenuProps::VideoWidgetX, (int)AlgoMenuProps::VideoWidgetY, (int)AlgoMenuProps::LargeVideoWidgetW + 6, (int)AlgoMenuProps::LargeVideoWidgetH + 4);
+        _graphPicture->setGeometry((int)AlgoMenuProps::VideoWidgetX, (int)AlgoMenuProps::VideoWidgetY, (int)AlgoMenuProps::LargeVideoWidgetW, (int)AlgoMenuProps::LargeVideoWidgetH);
+    }
 }

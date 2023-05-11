@@ -50,6 +50,7 @@ private:
     int getSliderPosByValue(double x);
     int getVertexByIndex(int index);
     void setVideoToPlayer(QString path);
+    void setAnimationPlayerGeometry();
 
 private:
     bool _isBFS;
